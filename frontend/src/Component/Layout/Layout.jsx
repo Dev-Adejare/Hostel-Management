@@ -3,10 +3,10 @@ import Header from "./Component/Header/Header"
 
 const Layout = ({children}) => {
   return (
-    <div>
+    <>
       <Header/>
-      <div> {children} </div>
-    </div>
+      <div style={{minHeight:"80vh"}}> {children} </div>
+    </>
   )
 }
 
