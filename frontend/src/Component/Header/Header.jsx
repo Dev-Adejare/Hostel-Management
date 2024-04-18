@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const items = [
   { title: "Dashboard", url: "/dashboard" },
-  { title: "students", url: "/studentDash" },
+  { title: "Students", url: "/studentDash" },
   { title: "Rooms", url: "/room" },
 ];
 
