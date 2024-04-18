@@ -5,11 +5,11 @@ const StudentReg = () => {
   return (
     <div className="container form__ --100vh">
       <div className="form-container">
-        <p className="title"> Student Reg Page</p>
+        <p className="title"> Student Registration</p>
 
         <form className="form">
           <div className="--dir-column">
-            <label htmlFor="name">Student's Name:</label>
+            <label htmlFor="name">Student&apos;s Name:</label>
             <input 
             type="text"
             className="input"
@@ -25,7 +25,7 @@ const StudentReg = () => {
             type="text"
             className="input"
             name="age"
-            placeholder="Enter your age"
+            placeholder="20"
             required
             />
           </div>
@@ -36,7 +36,7 @@ const StudentReg = () => {
             type="text"
             className="input"
             name="room number"
-            placeholder="Enter your Room number"
+            placeholder="001"
             required
             />
           </div>
@@ -52,7 +52,7 @@ const StudentReg = () => {
             />
           </div>
           <div className="--dir-column">
-            <label htmlFor="password">Guardian's Name:</label>
+            <label htmlFor="password">Guardian&apos;s Name:</label>
             <input 
             type="text"
             className="input"
@@ -62,7 +62,7 @@ const StudentReg = () => {
             />
           </div>
           <div className="--dir-column">
-            <label htmlFor="password">Guardian's Email:</label>
+            <label htmlFor="password">Guardian&apos;s Email:</label>
             <input 
             type="email"
             className="input"
@@ -72,7 +72,7 @@ const StudentReg = () => {
             />
           </div>
 
-          <button className="--btn">Register</button>
+          <button className="--btn">Add Student</button>
         </form>
        
       </div>

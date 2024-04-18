@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
   .form-container {
     width: 70%;
@@ -10,6 +11,7 @@
     border-radius: 10px;
     box-sizing: border-box;
     padding: 20px 30px;
+    margin: 0 auto;
   } 
   
   .form-container p > a {
@@ -19,11 +21,10 @@
   
   .title {
     font-family: Inter;
-    font-size: 32px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 700;
-    line-height: 40px;
-    letter-spacing: -0.8px;
+    text-align: center;
   }
   
   .form {
@@ -67,4 +68,9 @@
     background: var(--primary-btn-bg);
     font-size: 14px;
     color: var(--main-bg);
+  }
+
+  .--btn:hover{
+    transition-duration: 600ms;
+    transform: translateY(-2px);
   }
