@@ -1,35 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
 :root {
   --main-bg: #fff;
   --primary-color: #121417;
 
-  --font-family: "inter", "san-serif";
+  --font-family: "inter", "sans-serif";
   --font-weight: 700;
 
   --primary-btn-bg: #1a80e5;
   --primary-btn-padding: 0 16px;
   --secondary-btn-bg: #f0f2f5;
-  --text-fade:#637587;
+  --text-fade: #637587;
   --text-primary: #121417;
+
 
   --full-width: 100%;
 
   font-style: normal;
-  scroll-padding: 5rem;
+  scroll-padding-top: 5rem;
   scroll-behavior: smooth;
 }
+
 
 *{
   padding: 0;
   margin: 0;
   border: none;
+  box-sizing: border-box;
   text-decoration: none;
   outline: none;
 }
 
-a {
+a{
   color: var(--primary-color);
 }
+
 
 .container {
   padding: 20px 160px;
@@ -52,18 +58,16 @@ img {
   padding: var(--primary-btn-padding);
   color: var(--main-bg);
   font-family: var(--font-family);
-  font-size: 14px;
-  font-style: normal;
+  font-size: normal;
   font-weight: var(--font-weight);
   line-height: 21px;
   letter-spacing: 0.21px;
   width: 84px;
   height: 40px;
 }
-
-.btn-secondary {
+.btn-scondary {
   border-radius: 12px;
-  background: #1a80e5;
+  background-color: var(--secondary-btn-bg);
   padding: var(--primary-btn-padding);
   color: var(--main-bg);
   font-family: var(--font-family);
@@ -71,29 +75,29 @@ img {
   font-style: normal;
   font-weight: var(--font-weight);
   line-height: 21px;
-  letter-spacing: 0.21px;
-  width: 84px;
+  letter-spacing: 0.21;
   height: 40px;
+
 }
+
 
 .notification {
   border-radius: 12px;
-  background: var(--secondary-btn-bg);
+  background-color: var(--secondary-btn-bg);
   width: 40px;
   height: 40px;
   padding: 10px;
 }
 
-/* Flex */
-.--flex-center {
+.--flex-start {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .--flex-end {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -103,17 +107,11 @@ img {
   align-items: center;
 }
 
-.--flex-start {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
 .--dir-column {
   flex-direction: column;
 }
 
-.--flex-dir-column {
+.--flex-dir-colomn {
   display: flex;
 }
 
@@ -122,13 +120,10 @@ img {
   align-items: center;
 }
 
-.--100vh {
-  height: 100vh;
-}
-
 .--mh-100vh {
   min-height: 100vh;
 }
 
-
-
+.--100vh {
+  height: 100vh;
+}
