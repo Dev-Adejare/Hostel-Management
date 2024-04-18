@@ -1,0 +1,43 @@
+header {
+    border-bottom: 1px solid #e5e8eb;
+    padding: 12px 40px;
+  }
+  
+  .logo > a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  
+  
+  .logo a > span {
+    color: #121417;
+    font-weight: 700;
+    font-size:20px
+}
+    
+    
+  
+  .navItems {
+      gap: 36px;
+      margin-right: -13em;
+    }
+    
+    
+    
+  
+  /* .navItems > div a {
+    color: #121417;
+    font-feature-settings: "dlig" on;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
+  } */
+  
+  .btn__wrapper {
+    gap: 16px;
+} 
+    

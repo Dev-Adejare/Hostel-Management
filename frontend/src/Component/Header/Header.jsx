@@ -41,7 +41,7 @@ const Header = () => {
         </div>
 
         <div className="btn__wrapper --flex-center">
-            <button className="--btn-primary">New</button>
+            <button className="btn-primary">New</button>
             <button className="notification">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ const Header = () => {
             </button>
 
             <div>
-                <img src="" alt="" />
+                <img src="/src/assets/nav-image.jpg" alt="nav-image" />
             </div>
         </div>
       </nav>

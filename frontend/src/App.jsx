@@ -6,6 +6,7 @@ import StudentReg from "./Component/Register/StudentReg"
 
 
 
+
 function App() {
 
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<AdminReg/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/student-reg" element={<StudentReg/>}/>
+        
 
       </Routes>
      
