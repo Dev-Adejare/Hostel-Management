@@ -8,8 +8,6 @@ header {
     align-items: center;
     gap: 16px;
   }
-
-  
   
   .logo a > span {
     color: #121417;
@@ -17,27 +15,21 @@ header {
     font-size:20px
 }
     
-    
-  
-  .navItems {
-      gap: 36px;
-      margin-right: -13em;
-    }
-    
-    
-    
-  
-  /* .navItems > div a {
-    color: #121417;
-    font-feature-settings: "dlig" on;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 21px;
-  } */
+.navItems {
+    gap: 36px;
+    margin-right: -13em;
+  }
   
   .btn__wrapper {
     gap: 16px;
 } 
+    
+  
+  
+  
+    
+    
+  
+ 
+  
     
