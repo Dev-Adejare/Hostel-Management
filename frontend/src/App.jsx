@@ -6,12 +6,8 @@ import HomeDash from "./Component/Dashboard/HomeDash"
 import Layout from "./Component/Layout/Layout"
 
 
-
-
-
 function App() {
-
-
+  
   return (
     <div>
       <Routes>
@@ -28,3 +24,7 @@ function App() {
 }
 
 export default App
+
+
+
+
