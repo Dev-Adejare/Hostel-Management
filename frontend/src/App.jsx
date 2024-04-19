@@ -15,8 +15,6 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/student-reg" element={<StudentReg/>}/>
         <Route path="/homedash" element={<Layout><HomeDash/></Layout>}/>
-        
-
       </Routes>
      
     </div>
@@ -24,6 +22,8 @@ function App() {
 }
 
 export default App
+        
+
 
 
 
