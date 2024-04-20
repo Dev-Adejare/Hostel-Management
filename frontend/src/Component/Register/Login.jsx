@@ -33,8 +33,6 @@ const Login = () => {
                 />
               </div>
     
-            
-    
               <button className="--btn">Login</button>
             </form>
             <p>
@@ -46,3 +44,5 @@ const Login = () => {
 }
 
 export default Login
+            
+    
