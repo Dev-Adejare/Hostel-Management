@@ -3,7 +3,7 @@ import React from 'react'
 const HomeDash = () => {
   return (
     <div>
-      home--dash
+     <p> Home--Dash </p>
     </div>
   )
 }
