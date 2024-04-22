@@ -1,0 +1,146 @@
+._homeDashCon {
+    flex-direction: column;
+    margin: 20px 160px 0 160px;
+}
+
+.__flex{
+    display: flex;
+    justify-content: center;
+}
+
+.__users {
+    display: flex;
+    width: var(--full-width);
+}
+
+
+.__paraCon{
+    width: 100%;
+    padding: 24px;
+}
+
+.__paraHeader{
+    font-family: var(--font-family);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.8px;
+    text-align: left;
+}
+
+.__secondCon{
+    width: 100%;
+}
+
+.__quickTitle{
+    padding: 24px;
+    font-family: var(--font-family);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.8px;
+    text-align: left;
+
+}
+
+
+
+.__boards{
+    width: var( --full-width);
+    justify-content: space-between;
+    gap: 12.5px;
+    padding: 12px 16px;
+}
+
+.__board{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 214.141px;
+    padding: 12px;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid #DBE0E5;
+}
+
+.__boardHead{
+    font-family: var(--font-family);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -0.6000000238418579px;
+    text-align: center;
+    color: #121417;
+}
+
+
+.__boardDetails{
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: center;
+    color: #637587;
+}
+
+
+.__firstCon{
+    width: var(--full-width);
+    padding: 24px;
+    gap: 24px;
+    flex-direction: column;
+}
+
+
+.__title{
+    font-family: var(--font-family);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.33000001311302185px;
+    text-align: left;
+    color: #121417;
+    width: 100%;
+
+}
+
+.__users{
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+ .__firstUserPic{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+ .__userData{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--full-width);
+}
+
+.__userData > div > h5{
+    font-family: var(--font-family);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #121417;
+}
+/* 
+.__userData > div >p{
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #637587;
+}   */
+  
