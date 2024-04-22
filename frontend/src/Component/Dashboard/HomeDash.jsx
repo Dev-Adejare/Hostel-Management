@@ -1,6 +1,7 @@
 import React from "react";
 import "./HomeDash.css";
 import { lady, blacky, bash, tallest } from "../../assets";
+import { Link } from "react-router-dom";
 
 const HomeDash = () => {
   const activities = [
@@ -146,16 +147,18 @@ const HomeDash = () => {
       </div>
 
       <div className="__lastCon">
-        <h3 className="lastTitle">Quick Actions</h3>
-      </div>
+        <h3 className="__lastTitle">Quick Actions</h3>
+      
 
       <div>
         <button className="__addBtn">
-          Add a student
+          <Link to="/student-reg">Add a student</Link>
         </button>
-        <button>
-          Attendance
+        <button className="__attendBtn">
+          <Link to="/attendance">Attendance</Link>
         </button>
+        
+      </div>
       </div>
     </div>
   );
