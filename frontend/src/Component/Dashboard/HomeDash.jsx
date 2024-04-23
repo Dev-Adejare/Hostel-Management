@@ -12,19 +12,19 @@ const HomeDash = () => {
       time: "Now",
     },
     {
-      userPic: lady,
+      userPic: blacky,
       userName: "Kenny",
       action: "Kenny has been checked out",
       time: "3 mins ago",
     },
     {
-      userPic: lady,
+      userPic: bash,
       userName: "Bode",
       action: "Bode has been checked out",
       time: "5 mins ago",
     },
     {
-      userPic: lady,
+      userPic: tallest,
       userName: "Hayzed",
       action: "Hayzed has been checked out",
       time: "20 mins ago",
