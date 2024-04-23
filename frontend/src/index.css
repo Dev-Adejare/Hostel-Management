@@ -64,7 +64,7 @@ img {
   width: 84px;
   height: 40px;
 }
-.btn-scondary {
+.btn-secondary {
   border-radius: 12px;
   background-color: var(--secondary-btn-bg);
   padding: var(--primary-btn-padding);
