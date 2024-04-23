@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Sidebar from './Sidebar';
+import RoomTable from './RoomTable'
+
 
 
 const initialRooms = [
@@ -30,7 +32,7 @@ const Rooms = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [rooms, setRooms] = useState(initialRooms)
     const [filteredData, setFilteredData] = useState(initialRooms);
-}
+
 
 const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();
@@ -48,7 +50,7 @@ const handleSearchChange = (e) => {
 
   }
 
-  const handleupdateRoom = (roomNumber, roomStatus) => {
+  const handleUpdateRoom = (roomNumber, newStatus) => {
     const updatedRooms = rooms.map((room) =>
 room.roomNumber === roomNumber ? {...room, status: newStatus } : room
 );
@@ -65,6 +67,30 @@ room.roomNumber === roomNumber ? {...room, status: newStatus } : room
     setFilteredData(updatedRooms);
   };
 
+  return (
+    <div className="container --flex-start">
+      <Sidebar />
+      <div>
+        <h1>Hostel Room Listing</h1>
+        <input
+          placeholder="Search by room number, status, or location"
+          type="text"
+          className="search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <RoomTable
+          rooms={filteredData}
+          onAddRoom={handleAddRoom}
+          onUpdateRoom={handleUpdateRoom}
+          onDeleteRoom={handleDeleteRoom}
+        />
+      </div>
+    </div>
+  )};
+
+
+ export default Rooms;
 
 
 
