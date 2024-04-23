@@ -128,6 +128,10 @@ const StudentDashboard = () => {
             
           </table>
         </div>
+
+        <button className="btn-secondary">
+          <Link to="/student-reg">Add a student</Link>
+        </button>
         
       </div>
     </div>
