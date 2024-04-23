@@ -44,6 +44,8 @@ const StudentDashboard = () => {
   const [students, setStudents] = useState('');
   const [filteredData, setFilteredData] = useState('');
 
+
+
   const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
@@ -54,6 +56,21 @@ const StudentDashboard = () => {
     );
     setFilteredData(filtered);
   };
+
+
+
+  const handleDelete = (studentId) => {
+    const updatedStudents = students.filter(
+      (student) => student.id !== studentId
+    );
+    setStudents(updatedStudents);
+    const updatedFilteredData = filteredData.filter(
+      (student) => student.id !== studentId
+    );
+    setFilteredData(updatedFilteredData);
+  };
+
+  
     
   return (
     <div>
