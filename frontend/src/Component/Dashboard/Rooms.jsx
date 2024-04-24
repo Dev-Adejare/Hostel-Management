@@ -46,7 +46,9 @@ const handleSearchChange = (e) => {
     setFilteredData(filtered);
   };
 
-  const handleAddRoom = () => {
+  const handleAddRoom = (newRoomData) => {
+    setRooms([...rooms, newRoomData]);
+    setFilteredData([...rooms, newRoomData]);
 
   }
 
