@@ -8,30 +8,30 @@ const initialRooms = [
     {
         roomNumber: '101',
         capacity: 4,
-        occupacy: 2,
+        occupancy: 2,
         status: "Available",
         location: "lakeside Manor, Riverside"
     },
     {
         roomNumber: '102',
         capacity: 4,
-        occupacy: 2,
+        occupancy: 2,
         status: "Available",
         location: "lakeside Manor, Riverside"
     },
     {
         roomNumber: '103',
         capacity: 4,
-        occupacy: 2,
+        occupancy: 2,
         status: "Available",
         location: "lakeside Manor, Riverside"
     },
 ]
 
 const Rooms = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [rooms, setRooms] = useState(initialRooms)
-    const [filteredData, setFilteredData] = useState(initialRooms);
+    const [searchTerm, setSearchTerm] = useState('');  // input handler
+    const [rooms, setRooms] = useState(initialRooms)  // our data state
+    const [filteredData, setFilteredData] = useState(initialRooms);   // filter your data according to input
 
 
 const handleSearchChange = (e) => {
@@ -68,7 +68,7 @@ room.roomNumber === roomNumber ? {...room, status: newStatus } : room
   };
 
   return (
-    <div className="container --flex-start">
+    <div className="container --flex-start --gap">
       <Sidebar />
       <div>
         <h1>Hostel Room Listing</h1>
