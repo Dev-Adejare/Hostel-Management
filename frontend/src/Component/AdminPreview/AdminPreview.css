@@ -1,1 +1,234 @@
+.__prevCon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 65px 187px 0 133px;
+    height: auto;
+    gap: 24px;
+}
 
+
+
+.__prevHeader{
+    font-family: var(--font-family);
+    font-size: 36px;
+    letter-spacing: -1.19px;
+    font-weight: 900;
+    width: 100%;
+    text-align: left;
+    color: #121417;
+    padding: 16px;
+
+}
+
+.__prevSearchIcon{
+    font-size: 20px;
+}
+
+.__prevSearchCon{
+    width: 100%;
+    padding: 18px;
+    background: #F0F2F5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 12px;
+}
+
+.__prevSearch{
+    background: #F0F2F5;
+    width: 80%;
+    height: 80%;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+
+.__prevSearch::placeholder{
+    color: #637587;
+}
+
+.__prevList{
+    width: 100%;
+    padding: 12px 16px;
+}
+
+.__prevTable {
+    width: 100%;
+    /*border-collapse: collapse;
+    */border: 1px solid #DBE0E5;
+    border-radius: 10px;
+    font-family: var(--font-family);
+}
+
+.__tableHead{
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #121417;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #E5E8EB;
+    height: 66px;
+
+}
+
+.__tableData{
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #E5E8EB;
+    height: 66px;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.__tableName{
+color: #121417;
+
+}
+
+.__tableEmail{
+  color: #637587;
+
+}
+
+
+.__tableRole{
+    padding: 1px;
+
+}
+
+.__tableRole > p {
+    padding: 9.5px;
+    background-color: #F0F2F5;
+    height: 40px;
+    width: 100px;
+    border-radius: 12px;
+    text-align: center;
+    color: #637587;
+}
+
+.__tableAction{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Inter;
+    
+
+    
+}
+
+.__prevEditButton{
+    background-color: #F0F2F5;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #637587;
+}
+
+.__prevDelButton{
+    font-size: 20px;
+    color: rgb(107, 35, 35);
+}
+
+.__inviteBtnCon{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 16px;
+}
+
+.__inviteBtn{
+    width: 135px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0 16px 0 16px;
+    background: #1A80E5;
+    font-family: var(--font-family);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0.20999999344348907px;
+    text-align: left;
+    text-align: center;
+    color:#FFFFFF;
+
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .modal-title {
+    margin-top: 0;
+  }
+  
+  .user-name {
+    margin-bottom: 10px;
+  }
+  
+  .role-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .role-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .save-button,
+  .cancel-button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .save-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .cancel-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+  }
