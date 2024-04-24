@@ -4,6 +4,11 @@ import { RiDeleteBin6Line, RiFilePaperLine } from "react-icons/ri";
 import { FaPen } from "react-icons/fa";
 import EditStatusModal from "./EditStatusModal";
 
+
+// The code you've provided sets up a React component called RoomTable 
+// that manages the state for showing a modal and selecting a room. 
+// It provides a function openModal to open the modal and update the selected room
+
 const RoomTable = ({ rooms, onAddRoom, onUpdateRoom, onDeleteRoom }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState(null);

@@ -52,12 +52,12 @@ const handleSearchChange = (e) => {
 
   const handleUpdateRoom = (roomNumber, newStatus) => {
     const updatedRooms = rooms.map((room) =>
-room.roomNumber === roomNumber ? {...room, status: newStatus } : room
+      room.roomNumber === roomNumber ? { ...room, status: newStatus } : room
 );
     setRooms(updatedRooms);
     setFilteredData(updatedRooms);
+  };
 
-  }
 
   const handleDeleteRoom = (roomNumber) => {
     const updatedRooms = rooms.filter(
