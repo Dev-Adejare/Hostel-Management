@@ -54,8 +54,8 @@ const handleSearchChange = (e) => {
     const updatedRooms = rooms.map((room) =>
 room.roomNumber === roomNumber ? {...room, status: newStatus } : room
 );
-    setRooms(updatedRooms)
-    setFilteredData(updatedRooms)
+    setRooms(updatedRooms);
+    setFilteredData(updatedRooms);
 
   }
 
