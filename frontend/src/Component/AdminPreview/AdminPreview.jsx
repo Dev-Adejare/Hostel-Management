@@ -4,11 +4,11 @@ import { CiSearch } from "react-icons/ci";
 import UserTable from "./UserTable";
 
 const userData = [
-  { name: "Kenny", email: "john@example.com", role: "Admin", id: 1 },
-  { name: "Zainab ", email: "Zainab@example.com", role: "User", id: 2 },
-  { name: "Basirat", email: "Basirat@example.com", role: "Member", id: 3 },
-  { name: "Azeez", email: "Azeez@example.com", role: "Admin", id: 4 },
-  { name: "Soliu", email: "Soliu@example.com", role: "Member", id: 5 },
+  { name: "Kenny", email: "kenny@example.com", role: "Admin", id: 1 },
+  { name: "Bisi", email: "Bisi@example.com", role: "User", id: 2 },
+  { name: "Hidee", email: "Hidee@example.com", role: "Member", id: 3 },
+  { name: "Derayo", email: "Derayo@example.com", role: "Admin", id: 4 },
+  { name: "Fareedah", email: "Fareedah@example.com", role: "Member", id: 5 },
 ];
 
 const AdminPreview = () => {
