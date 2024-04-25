@@ -102,8 +102,8 @@ const Attendance =() => {
     const studentData = [
       {
         name: "Aliyu Abdullah",
-        buttonText: "go there",
-        image: lady // Assuming moe is your image source
+        buttonText: "Go there",
+        image: lady //  lady is my image source
       },
       {
         name: "Kenny Soliu",
@@ -112,12 +112,19 @@ const Attendance =() => {
       },
       {
         name: "Zainab MM",
-        buttonText: "software Dev",
+        buttonText: "software Dev.",
         image: lady
       }
     ];
+
+    const handlePrevMonthClick = () => {}
+    const handleNextMonthClick = () => {}
+    const handlePrevYearClick = () => {}
+    const handleNextYearClick = () => {}
   
   
+
+
   return (
     <div className="attCon">
       <div>
