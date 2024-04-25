@@ -107,7 +107,7 @@ function Attendance() {
     {
       name: "Aliyu Abdullah",
       buttonText: "go there",
-      image: lady, // Assuming moe is your image source
+      image: lady, 
     },
     {
       name: "Kenny Soliu",
@@ -156,7 +156,7 @@ function Attendance() {
       <div className="calendar">
         <div className="controls">
           <button className="yearButton" onClick={handlePrevYearClick}>
-            <LuChevronsLeft /> 
+            <LuChevronsLeft />
             {/* <FaChevronLeft /> */}
           </button>
           <button className="monthButton" onClick={handlePrevMonthClick}>
@@ -173,41 +173,36 @@ function Attendance() {
         </div>
       </div>
 
-
-
-      <div className='peopleDetail'>
-      <h2 className='markText'>Mark Attendance</h2>
-      {peopleData.map((person, index) => (
-        <div key={index} className='peopleMov'>
-          <div>
-            <div className='image_st'>
-              <img src={person.image} alt={person.name} />
+      <div className="peopleDetail">
+        <h2 className="markText">Mark Attendance</h2>
+        {peopleData.map((person, index) => (
+          <div key={index} className="peopleMov">
+            <div>
+              <div className="image_st">
+                <img src={person.image} alt={person.name} />
+              </div>
+              <div className="titleBox">
+                <h3 className="titleText">{person.name}</h3>
+                <p className="titlePara">{person.buttonText}</p>
+              </div>
             </div>
-            <div className='titleBox'>
-              <h3 className='titleText'>{person.name}</h3>
-              <p className='titlePara'>{person.buttonText}</p>
+            <div>
+              <div
+                className={`toggleSwitch ${
+                  activeIndex === index ? "active" : ""
+                }`}
+                onClick={() => handleToggleClick(index)}
+              ></div>
             </div>
           </div>
-          <div>
-            <div
-              className={`toggleSwitch ${activeIndex === index ? 'active' : ''}`}
-              onClick={() => handleToggleClick(index)}
-            ></div>
-          </div>
+        ))}
+
+        <div className="attendanceLas">
+          <button className="attendanceBtn">submit</button>
         </div>
-      ))}
-
-<div className='attendanceLas'>
-    <button className='attendanceBtn'>submit</button>
-    </div>
-    
-    </div>
-
-
-
-      
+      </div>
     </div>
   );
-};
+}
 
 export default Attendance;
