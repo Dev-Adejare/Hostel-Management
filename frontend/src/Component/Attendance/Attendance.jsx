@@ -159,17 +159,17 @@ const Attendance =() => {
   
       <div className="calendar">
         <div className="controls">
-          <button>
+          <button className="yearButton" onClick={handlePrevYearClick}>
             <FaChevronLeft />
           </button>
-          <button>
+          <button className="monthButton" onClick={handlePrevMonthClick}>
             <LuChevronsLeft/>
           </button>
           {createCalendar()}
-          <button>
+          <button className="monthButton" onClick={handleNextMonthClick}>
             <LuChevronsRight/>
           </button>
-          <button>
+          <button className="yearButton" onClick={handleNextYearClick}>
             <FaChevronRight/>
           </button>
         </div>
