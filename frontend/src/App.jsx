@@ -7,6 +7,7 @@ import Layout from "./Component/Layout/Layout";
 import StudentDashboard from "./Component/Dashboard/StudentDashboard";
 import Rooms from "./Component/Dashboard/Rooms";
 import AdminPreview from "./Component/AdminPreview/AdminPreview";
+import Attendance from "./Component/Attendance/Attendance";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/studentdash" element={<StudentDashboard/>}/>
         <Route path="/room" element={<Rooms />} />
         <Route path="/adminsPrev" element={<AdminPreview/>}/>
+        <Route path="/attendance" element={<Attendance/>} />
 
       </Routes>
      

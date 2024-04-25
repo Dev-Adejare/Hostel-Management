@@ -29,10 +29,9 @@ function Attendance() {
     let days = [];
 
     // Add empty placeholders for days before the first day of the month
-    for (let day = 1; day <= numDays; day++) {
-        days.push(day)
-    };
-    
+    for (let i = 0; i < firstDay; i++) {
+      days.push('');
+    }
 
     // Add the days of the month
     for (let day = 1; day <= numDays; day++) {
