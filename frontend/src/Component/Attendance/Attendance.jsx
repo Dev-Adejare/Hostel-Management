@@ -117,10 +117,35 @@ const Attendance =() => {
       }
     ];
 
-    const handlePrevMonthClick = () => {}
-    const handleNextMonthClick = () => {}
-    const handlePrevYearClick = () => {}
-    const handleNextYearClick = () => {}
+    const handlePrevMonthClick = () => {
+      if (month === 1) {
+        setMonth(12);
+        setYear(year - 1);
+      } else {
+        setMonth(month - 1);
+      }
+    }
+    
+    
+    const handleNextMonthClick = () => {
+      if (month === 12) {
+        setMonth(1);
+        setYear(year + 1);
+      } else {
+        setMonth(month + 1);
+      }
+
+    }
+    
+    
+    const handlePrevYearClick = () => {
+      setYear(year - 1);
+    }
+    
+    
+    const handleNextYearClick = () => {
+      setYear(year + 1);
+    }
   
   
 
