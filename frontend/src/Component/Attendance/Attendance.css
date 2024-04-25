@@ -1,0 +1,186 @@
+.attCon {
+    padding: 20px 160px;
+  }
+  
+  .dailyText {
+    color: #121417;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    font-family: 'Inter' sans-serif;
+  }
+  .selectDay{
+    font-family: 'Inter' sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+  
+  
+  .calendar {
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .yearButton {
+    background: none;
+    display: flex;
+    justify-content: center;
+    /* font-size: 15px; */
+  }
+  
+  .monthButton {
+    background: none;
+    display: flex;
+    justify-content: center;
+    /* font-size: 1rem; */
+  }
+  
+  .days-of-week {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-top: 10px;
+  }
+  
+  .week {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .day {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+  
+  .day.empty {
+    visibility: hidden;
+  }
+  
+  .today {
+      border: 2px solid #e8e8ec;
+      background-color: #1A80E5;
+      border-radius: 50%;
+      padding: 3px;
+      color: #fff;
+     
+    }
+  
+  .calendar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .peopleDetail {
+    /* background: #f0eded; */
+  }
+  
+  .peopleMov {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding: 20px 160px; */
+    padding: 8px 16px;
+  }
+  
+  .peopleMov > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .markText {
+    margin-bottom: 1rem;
+    color: #121417;
+    font-family: 'Inter' sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .titleText {
+    color: #121417;
+    font-family: 'Inter' sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+  }
+  
+  .titlePara {
+    color: #637587;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  
+  .toggleSwitch {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .toggleSwitch.active {
+    background-color: #333; /* Change to your desired active color */
+  }
+  
+  .toggleSwitch::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 1px;
+    left: 1px;
+    transition: transform 0.2s;
+  }
+  
+  .toggleSwitch.active::after {
+    transform: translateX(20px);
+  }
+  
+  .attendanceLas {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .attendanceBtn {
+   color: #FFF;
+   background-color: #1A80E5;
+   font-size: 14px;
+  font-weight: 700;
+   padding: 5px 20px;
+   margin-top: 1rem;
+   border-radius: 12px;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   -ms-border-radius: 12px;
+   -o-border-radius: 12px;
+  }
