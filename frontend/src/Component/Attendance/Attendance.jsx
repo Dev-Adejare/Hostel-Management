@@ -5,7 +5,7 @@ import './Attendance.css'
  import { LuChevronsLeft, LuChevronsRight  } from "react-icons/lu";
 
 
-function Attendance() {
+const Attendance =() => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth() + 1); // Months are zero-based
 
@@ -67,7 +67,8 @@ function Attendance() {
           {weeks.map((week, index) => (
               <div key={index} className='week'>
                 {week.map((day, index) => (
-                    <div key={{index}}className={`day ${day === '' ? 'empty' : ''} ${isToday(year, month, day) ? 'today' : ''}`}>
+                    <div key={{index}}className={`day ${day === '' ? 'empty' : ''} 
+                    ${isToday(year, month, day) ? 'today' : ''}`}>
                 {day}
                     </div>
 
@@ -77,18 +78,80 @@ function Attendance() {
           ))}
       </div>
     );
-   
+    
   };
+
+  // Function to check if a given date is today
+  const isToday = (checkYear, checkMonth, checkDay) => {
+    const today = new Date();
+    return (checkYear === today.getFullYear() &&
+      checkMonth === today.getMonth() + 1 &&
+      checkDay === today.getDate()
+    );
+  };
+
+  
+    //Mark Attendance
+
+    const [activeIndex, setActiveIndex] = useState(-1);
+
+    const handleToggleClick = (index) => {
+      setActiveIndex(index === activeIndex ? -1 : index);
+    };
+
+    const studentData = [
+      {
+        name: "Aliyu Abdullah",
+        buttonText: "go there",
+        image: lady // Assuming moe is your image source
+      },
+      {
+        name: "Kenny Soliu",
+        buttonText: "Assuming you fine more than this",
+        image: lady
+      },
+      {
+        name: "Zainab MM",
+        buttonText: "software Dev",
+        image: lady
+      }
+    ];
+  
+  
+  return (
+    <div className="attCon">
+      <div>
+        <h2 className='dailyText'>Daily Attendance</h2>
+        <p className='selectDay'>Select Day</p>
+      </div>
+  
+      <div className="calendar">
+        <div className="controls">
+          <button>
+            <FaChevronLeft />
+          </button>
+          <button>
+            <LuChevronsLeft/>
+          </button>
+          {createCalendar()}
+          <button>
+            <LuChevronsRight/>
+          </button>
+          <button>
+            <FaChevronRight/>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+  
+  
 };
 
 
-// Function to check if a given date is today
-const isToday = (checkYear, checkMonth, checkDay) => {
-  const today = new Date();
-  return checkYear === today.getFullYear() &&
-    checkMonth === today.getMonth() + 1 &&
-    checkDay === today.getDate();
-};
+
+
+
 
 
   
