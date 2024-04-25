@@ -67,18 +67,29 @@ function Attendance() {
           {weeks.map((week, index) => (
               <div key={index} className='week'>
                 {week.map((day, index) => (
-                    <div key={{index}}>
-                        
+                    <div key={{index}}className={`day ${day === '' ? 'empty' : ''} ${isToday(year, month, day) ? 'today' : ''}`}>
+                {day}
                     </div>
 
-                ))}
+                ))};
   
               </div>
           ))}
       </div>
-    )
+    );
    
   };
+};
+
+
+// Function to check if a given date is today
+const isToday = (checkYear, checkMonth, checkDay) => {
+  const today = new Date();
+  return checkYear === today.getFullYear() &&
+    checkMonth === today.getMonth() + 1 &&
+    checkDay === today.getDate();
+};
+
 
   
 
@@ -87,6 +98,5 @@ function Attendance() {
 
 
 
-}
 
 export default  Attendance;
