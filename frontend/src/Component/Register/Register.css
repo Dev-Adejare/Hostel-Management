@@ -118,9 +118,7 @@
 }
 
 @media (min-width:992px) and (max-width: 1199px) {
-  .container {
-    background: greenyellow
-  }
+  
 
   .form-container {
     width: 70%;
@@ -162,10 +160,7 @@
 
   @media (min-width:768px) and (max-width: 991px) {
 
-    .container {
-      background: rgb(144, 47, 255)
-    }
-
+   
     .form-container {
       width: 70%;
       max-width: 55rem;
@@ -201,17 +196,81 @@
   }
 
   @media (min-width: 481px) and (max-width: 767px) {
-    .container {
-      background: rgb(178, 183, 27)
-    }
+ 
 
     .form-container {
-      width: 80%;
+      width: 100%;
       max-width: 30rem;
-      font-size: 18px;
+      font-size: 16px;
+      padding: 20px 10px;
+
     } 
 
+    .title {
+      /* padding-top: 2rem; */
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .form {
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .input {
+      height: 30px;
+      font-size: 12px;
+    }
+
+    .--btn {
+      height: 20px;
+      font-size: 12px;
+    }
+
+    .form-container p > a {
+      text-decoration: underline;
+      font-size: 14px;
+    }
+
   }
+
+  @media (min-width: 290px) and (max-width: 480px) {
+
+    
+
+    .form-container {
+      width: 100%;
+      /* max-width: 30rem; */
+      font-size: 16px;
+      padding: 20px 10px;
+
+    } 
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .form {
+      gap: 5px;
+      padding: 10px 0;
+    }
+
+    .input {
+      height: 25px;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .--btn {
+      height: 25px;
+      font-size: 12px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+  }
+    
+
 
 
 

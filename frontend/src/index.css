@@ -225,5 +225,13 @@ img {
     padding: 50px 70px;
   }
 
-
 }
+
+@media (min-width: 290px) and (max-width: 480px) {
+
+  .container{
+    padding: 0;
+    
+  }
+}
+
