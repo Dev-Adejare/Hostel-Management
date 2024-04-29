@@ -3,7 +3,7 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 
 const items = [
-  { title: "Dashboard", url: "/dashboard" },
+  { title: "Dashboard", url: "/homedash" },
   { title: "Students", url: "/studentDash" },
   { title: "Rooms", url: "/room" },
 ];
