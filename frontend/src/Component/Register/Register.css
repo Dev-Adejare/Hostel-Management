@@ -1,3 +1,43 @@
+@media (min-width:1200px) and (max-width: 1919px) {
+    
+
+  .form-container {
+    width: 90%;
+    max-width: 55rem;
+    padding: 20px 40px;
+    font-size: 25px;
+  } 
+
+.title {
+  font-size: 45px;
+}
+
+.form {
+  gap: 18px;
+  padding: 30px 0;
+}
+
+.input {
+  height: 50px;
+  font-size: 22px;
+}
+
+label {
+  font-size: 25px;
+}
+
+.--btn {
+  height: 60px;
+  font-size: 25px;
+}
+
+.form-container p > a {
+  text-decoration: underline;
+  font-size: 25px;
+}
+
+}
+
 .form__ {
     display: flex;
     align-items: center;
@@ -77,45 +117,8 @@
     transform: translateY(-2px);
   }
 
-  @media (min-width:1200px) and (max-width: 1919px) {
-    
-
-    .form-container {
-      width: 90%;
-      max-width: 55rem;
-      padding: 20px 40px;
-      font-size: 25px;
-    } 
-
-  .title {
-    font-size: 45px;
-  }
-
-  .form {
-    gap: 18px;
-    padding: 30px 0;
-  }
-
-  .input {
-    height: 50px;
-    font-size: 22px;
-  }
-
-  label {
-    font-size: 25px;
-  }
-
-  .--btn {
-    height: 60px;
-    font-size: 25px;
-  }
-
-  .form-container p > a {
-    text-decoration: underline;
-    font-size: 25px;
-  }
-
-}
+  
+ 
 
 @media (min-width:992px) and (max-width: 1199px) {
   

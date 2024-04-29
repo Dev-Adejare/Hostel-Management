@@ -1,15 +1,83 @@
+@media (min-width:1200px) and (max-width: 1919px) {
+
+  .attCon {
+background-color: gold;
+}
+  
+  .dailyText {
+    font-size: 45px;
+  }
+
+  .selectDay{
+    font-size: 30px;
+  }
+    
+  
+  
+  .calendar {
+    max-width: 500px;
+  }
+
+  
+  .days-of-week {
+    font-size: 25px;
+    padding-bottom: 0.5rem;
+    gap: 1rem;
+  }
+
+  .day {
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
+  }
+
+  .week {
+    gap: 40px;
+  }
+
+  .peopleMov{
+    padding: 15px 30px;
+  }
+
+.peopleMov > div {
+  gap: 12px;
+}
+
+.markText {
+  font-size: 30px;
+}
+
+.titleText {
+  font-size: 25px;
+}
+
+.titlePara {
+  font-size: 20px;
+}
+}
+
+
+
+
+
+
+
+    
+
+
 .attCon {
     padding: 20px 160px;
   }
   
   .dailyText {
     color: #121417;
-    font-family: Inter;
+    font-family: 'Inter';
     font-size: 36px;
     font-style: normal;
     font-weight: 900;
     font-family: 'Inter' sans-serif;
   }
+
   .selectDay{
     font-family: 'Inter' sans-serif;
     font-size: 22px;
@@ -178,3 +246,168 @@
    -ms-border-radius: 12px;
    -o-border-radius: 12px;
   }
+
+  @media (min-width:992px) and (max-width: 1199px) {
+    .attCon {
+      background-color: blueviolet;
+      }
+
+      .dailyText {
+        font-size: 30px;
+      }
+    
+      .selectDay{
+        font-size: 25px;
+        font-weight: 600;
+      }
+        
+      
+      
+      .calendar {
+        max-width: 400px;
+      }
+
+      .days-of-week {
+        font-size: 25px;
+        padding-bottom: 5px;
+        gap: 0.5rem;
+      }
+    
+      .day {
+        height: 40px;
+        width: 40px;
+        font-size: 20px;
+      }
+    
+      .week {
+        gap: 25px;
+      }
+    
+      .peopleMov{
+        padding: 15px 30px;
+      }
+    
+    .peopleMov > div {
+      gap: 10px;
+    }
+    
+    .markText {
+      font-size: 25px;
+    }
+    
+    .titleText {
+      font-size: 20px;
+    }
+    
+    .titlePara {
+      font-size: 18px;
+    }
+  } 
+
+  @media (min-width:768px) and (max-width: 991px) {
+
+    .attCon {
+      background-color: rgb(226, 43, 43);
+      padding: 20px 60px;
+
+      }
+
+    
+
+      .dailyText {
+        font-size: 25px;
+      }
+    
+      .selectDay{
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+        
+      
+      
+      .calendar {
+        font-size: 12px;
+      }
+
+      .days-of-week {
+        font-size: 12px;
+        padding-bottom: 5px;
+        gap: 5px;
+      }
+    
+      .day {
+        height: 20px;
+        width: 20px;
+        font-size: 16px;
+      }
+    
+      .week {
+        gap: 15px;
+      }
+    
+      .peopleMov{
+        padding: 15px 30px;
+      }
+    
+    .peopleMov > div {
+      gap: 10px;
+    }
+    
+    .markText {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .titleText {
+      font-size: 18px;
+    }
+    
+    .titlePara {
+      font-size: 14px;
+    }
+
+  }
+
+  @media (min-width:481px) and (max-width: 767px) {
+
+    .attCon {
+      background-color: rgb(43, 226, 64);
+      padding: 20px 40px;
+
+      }
+
+    
+
+      .dailyText {
+        font-size: 25px;
+      }
+    
+      .selectDay{
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+        
+      
+      
+      .calendar {
+        font-size: 12px;
+      }
+
+      .days-of-week {
+        font-size: 12px;
+        padding-bottom: 5px;
+        gap: 5px;
+      }
+
+  }
+    
+
+
+
+
+
+
+      
+      
