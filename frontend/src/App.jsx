@@ -17,12 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<AdminReg/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/student-reg" element={<StudentReg/>}/>
+        <Route path="/student-reg" element={<Layout><StudentReg/></Layout>}/>
         <Route path="/homedash" element={<Layout><HomeDash/></Layout>}/>
         <Route path="/studentdash" element={<StudentDashboard/>}/>
         <Route path="/room" element={<Rooms />} />
         <Route path="/adminsPrev" element={<AdminPreview/>}/>
-        <Route path="/attendance" element={<Attendance/>} />
+        <Route path="/attendance" element={<Layout><Attendance/></Layout>} />
 
       </Routes>
      
