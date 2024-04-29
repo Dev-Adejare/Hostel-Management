@@ -212,3 +212,18 @@ img {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+
+@media (min-width:768px) and (max-width: 991px) {
+  .container{
+    padding: 0;
+  }
+}
+
+@media (min-width:481px) and (max-width: 767px) {
+  .container {
+    background: rgb(178, 183, 27);
+    padding: 50px 70px;
+  }
+
+
+}
