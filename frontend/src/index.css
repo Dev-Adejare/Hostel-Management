@@ -29,6 +29,7 @@
   box-sizing: border-box;
   text-decoration: none;
   outline: none;
+  overflow-x: hidden;
 }
 
 a{

@@ -1,8 +1,6 @@
 @media (min-width:1200px) and (max-width: 1919px) {
 
-  .attCon {
-background-color: gold;
-}
+
   
   .dailyText {
     font-size: 45px;
@@ -62,7 +60,7 @@ background-color: gold;
 
 
 
-    
+    /************ General CSS style******** */
 
 
 .attCon {
@@ -248,9 +246,7 @@ background-color: gold;
   }
 
   @media (min-width:992px) and (max-width: 1199px) {
-    .attCon {
-      background-color: blueviolet;
-      }
+   
 
       .dailyText {
         font-size: 30px;
@@ -307,7 +303,6 @@ background-color: gold;
   @media (min-width:768px) and (max-width: 991px) {
 
     .attCon {
-      background-color: rgb(226, 43, 43);
       padding: 20px 60px;
 
       }
@@ -372,7 +367,6 @@ background-color: gold;
   @media (min-width:481px) and (max-width: 767px) {
 
     .attCon {
-      background-color: rgb(43, 226, 64);
       padding: 20px 40px;
 
       }
@@ -380,12 +374,13 @@ background-color: gold;
     
 
       .dailyText {
-        font-size: 25px;
+        font-size: 20px;
+        font-weight: 800;
       }
     
       .selectDay{
         font-size: 18px;
-        font-weight: 500;
+        font-weight: 700;
         margin-top: 0.5rem;
       }
         
@@ -401,6 +396,102 @@ background-color: gold;
         gap: 5px;
       }
 
+      .markText {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .titleText {
+        font-size: 18px;
+      }
+      
+      .titlePara {
+        font-size: 14px;
+      }
+
+  }
+
+  @media (min-width:290px) and (max-width: 480px) {
+
+
+    .attCon {
+      padding: 10px;
+
+      }
+
+      .dailyText {
+        font-size: 18px;
+        font-weight: 800;
+      }
+    
+      .selectDay{
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 2px;
+      }
+        
+      
+      
+      .calendar {
+        font-size: 12px;
+      }
+
+      .days-of-week {
+        font-size: 10px;
+        padding-bottom: 5px;
+        gap: 5px;
+      }
+    
+      .day {
+        height: 20px;
+        width: 20px;
+        font-size: 14px;
+      }
+    
+      .week {
+        gap: 15px;
+      }
+    
+      .peopleMov{
+        padding: 15px 30px;
+      }
+    
+    .peopleMov > div {
+      gap: 10px;
+      display: block;
+
+    }
+    
+    .markText {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    
+    .titleText {
+      font-size: 14px;
+    }
+    
+    .titlePara {
+      font-size: 12px;
+    }
+
+    .flex-column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .attendanceBtn {
+      font-size: 12px;
+     font-weight: 400;
+    }
+     
+     
+
+    
   }
     
 
