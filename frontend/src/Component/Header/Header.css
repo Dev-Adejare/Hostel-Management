@@ -24,9 +24,9 @@ header {
     gap: 16px;
 } 
 
-.navToggle {
-  font-size: 20px;
-  color:blue
+.sidebar-toggle-icon{
+  font-size: 40px;
+  color:blue;
 }
 
 

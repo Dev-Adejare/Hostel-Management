@@ -16,7 +16,7 @@ const Header = () => {
         <header>
             <nav className="navigation --flex-between">
 
-                <div className="navToggle" onClick={() => setNav(!nav)}>
+                <div className="sidebar-toggle-icon" onClick={() => setNav(!nav)}>
                     {nav ? <FaTimes /> : <FaBars />}
                 </div>
 
