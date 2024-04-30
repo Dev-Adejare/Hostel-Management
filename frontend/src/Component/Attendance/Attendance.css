@@ -231,6 +231,7 @@
     display: flex;
     justify-content: flex-end;
   }
+  
   .attendanceBtn {
    color: #FFF;
    background-color: #1A80E5;

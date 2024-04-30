@@ -29,7 +29,7 @@
   box-sizing: border-box;
   text-decoration: none;
   outline: none;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 a{
@@ -44,6 +44,7 @@ a{
 button {
   cursor: pointer;
 }
+
 
 img {
   width: 56px;
@@ -65,6 +66,7 @@ img {
   width: 84px;
   height: 40px;
 }
+
 .btn-secondary {
   border-radius: 12px;
   background-color: var(--secondary-btn-bg);

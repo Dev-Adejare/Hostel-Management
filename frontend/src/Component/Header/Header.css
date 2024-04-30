@@ -23,6 +23,13 @@ header {
   .btn__wrapper {
     gap: 16px;
 } 
+
+.navToggle {
+  font-size: 20px;
+  color:blue
+}
+
+
     
   
   
