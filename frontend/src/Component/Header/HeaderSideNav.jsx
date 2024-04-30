@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState}from "react";
 
 const HeaderSideNav = () => {
   return (
-    <div>
-      
+    <div className="sidebar-toggle-icon" onClick={() => setNav(!nav)}>
+      {nav ? <FaTimes /> : <FaBars />}
     </div>
-  )
-}
+  );
+};
 
-export default HeaderSideNav
+export default HeaderSideNav;

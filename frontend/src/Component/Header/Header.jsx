@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import HeaderSideNav from "./HeaderSideNav";
 
 const items = [
     { title: "Dashboard", url: "/homedash" },
@@ -9,10 +10,18 @@ const items = [
     { title: "Rooms", url: "/room" },
 ];
 
-const Header = () => {
+const [navToggle, setNavToggle] = useState(false)
 
-    const [nav, setNav] = useState(false)
+const Header = () => {
+    
+
     return (
+        <>
+        {navToggle && (
+            <div className="mobile-sidebar">
+                <HeaderSideNav/>
+            </div>
+        )}
         <header>
             <nav className="navigation --flex-between">
 
@@ -22,14 +31,14 @@ const Header = () => {
 
                 <div className="logo">
 
-
+ 
                     <Link to="/">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="14"
                             height="14"
                             viewBox="0 0 14 14"
-                            fill="none"
+                            fill="none" 
                         >
                             <path
                                 fill-rule="evenodd"
@@ -76,6 +85,7 @@ const Header = () => {
                 </div>
             </nav>
         </header>
+        </>
     );
 };
 

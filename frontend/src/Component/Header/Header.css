@@ -27,6 +27,8 @@ header {
 .sidebar-toggle-icon{
   font-size: 40px;
   color:blue;
+  cursor: pointer;
+  /* display: none; */
 }
 
 
