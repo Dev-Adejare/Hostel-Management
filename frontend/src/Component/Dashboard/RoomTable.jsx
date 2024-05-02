@@ -29,10 +29,10 @@ const RoomTable = ({ rooms, onAddRoom, onUpdateRoom, onDeleteRoom }) => {
   }
 
   return (
-    <div className="room-table-container">
+    <>
       <h2>Available Rooms</h2>
       <div className="table">
-        <table className="table_wrapper">
+        <table className="table_wrapper room-table">
           <thead className="table_head">
             <tr className="table__row">
               <th className="same_class">Room Number</th>
@@ -85,7 +85,7 @@ const RoomTable = ({ rooms, onAddRoom, onUpdateRoom, onDeleteRoom }) => {
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

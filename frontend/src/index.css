@@ -105,6 +105,10 @@ img {
   overflow-x: hidden;
 }
 
+.--overflow-y-auto {
+  overflow: hidden;
+}
+
 .--flex-center {
   display: flex;
   justify-content: center;

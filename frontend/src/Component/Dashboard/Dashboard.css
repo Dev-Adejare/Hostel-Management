@@ -25,9 +25,14 @@
   }
 
   .right {
-    width: 921px;
+    /* width: 921px; */
     padding: 16px;
   }
+
+  .dash-main {
+    width: 90%;
+  }
+
 
   .right p:nth-child(1) {
     width: var(--full-width);
@@ -67,7 +72,7 @@
   .table {
     padding: 5px;
     width: var(--full-width);
-    overflow-x: auto;
+    /* overflow-x: auto; */
     border-radius: 12px;
     border: 1px solid #dbe0e5;
     background: #fff;
