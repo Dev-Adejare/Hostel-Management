@@ -72,80 +72,87 @@ const StudentDashboard = () => {
   //effectively deleting the student from both lists.
 
   return (
-    <div className="--flex --overflow-hidden">
-      <div className="desktop-side-nav">
+    <div>
+      {isSidebarToggle &&(
+      <div className="mobile-side-nav">
         <Sidebar />
-      </div>
+      </div>)}
 
-      <div className="--flex-dir-column --overflow-y-auto --flex-1 --overflow-x-hidden">
-        <main className="--flex-justify-center w-full">
-          <div className="right dash-main">
-            <div className="--flex-justify-between">
-              <p>Students</p>
-              {isSidebarToggle ? (
-                <FaTimes
-                  className="sidebar-toggle-ico"
-                  onClick={() => setIsSidebarToggle(false)}
-                />
-              ) : (
-                <FaBars
-                  className="sidebar-toggle-ico"
-                  onClick={() => setIsSidebarToggle(true)}
-                />
-              )}
-            </div>
+      <div className="--flex --overflow-hidden">
+        <div className="desktop-side-nav">
+          <Sidebar />
+        </div>
 
-            <p>Search students</p>
+        <div className="--flex-dir-column --overflow-y-auto --flex-1 --overflow-x-hidden">
+          <main className="--flex-justify-center w-full">
+            <div className="right dash-main">
+              <div className="--flex-justify-between">
+                <p>Students</p>
+                {isSidebarToggle ? (
+                  <FaTimes
+                    className="sidebar-toggle-iconB"
+                    onClick={() => setIsSidebarToggle(false)}
+                  />
+                ) : (
+                  <FaBars
+                    className="sidebar-toggle-iconB"
+                    onClick={() => setIsSidebarToggle(true)}
+                  />
+                )}
+              </div>
 
-            <input
-              placeholder="Search by name, email, or ID number"
-              type="text"
-              className="search"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
+              <p>Search students</p>
 
-            <div className="table">
-              <table className="table_wrapper">
-                <thead className="table__head">
-                  <tr className="table__row">
-                    <th className="same_class">Student Name</th>
-                    <th className="same_class">Email</th>
-                    <th className="same_class">ID Number</th>
-                    <th className="same_class">Gender</th>
-                    <th className="same_class">Age</th>
-                    <th className="same_class">Nationality</th>
-                    <th className="same_class">Actions</th>
-                  </tr>
-                </thead>
+              <input
+                placeholder="Search by name, email, or ID number"
+                type="text"
+                className="search"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
 
-                <tbody className="table__body">
-                  {filteredData.map((student, index) => (
-                    <tr key={index} className="table__row">
-                      <td className="same_class">{student.name}</td>
-                      <td className="same_class">{student.email}</td>
-                      <td className="same_class">{student.idNumber}</td>
-                      <td className="same_class">{student.gender}</td>
-                      <td className="same_class">{student.age}</td>
-                      <td className="same_class">{student.nationality}</td>
-                      <td className="same_class">
-                        <RiDeleteBin6Line
-                          size={25}
-                          color="red"
-                          onClick={() => handleDelete(student.id)}
-                        />
-                      </td>
+              <div className="table">
+                <table className="table_wrapper">
+                  <thead className="table__head">
+                    <tr className="table__row">
+                      <th className="same_class">Student Name</th>
+                      <th className="same_class">Email</th>
+                      <th className="same_class">ID Number</th>
+                      <th className="same_class">Gender</th>
+                      <th className="same_class">Age</th>
+                      <th className="same_class">Nationality</th>
+                      <th className="same_class">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
 
-            <button className="btn-secondary">
-              <Link to="/student-reg">Add a student</Link>
-            </button>
-          </div>
-        </main>
+                  <tbody className="table__body">
+                    {filteredData.map((student, index) => (
+                      <tr key={index} className="table__row">
+                        <td className="same_class">{student.name}</td>
+                        <td className="same_class">{student.email}</td>
+                        <td className="same_class">{student.idNumber}</td>
+                        <td className="same_class">{student.gender}</td>
+                        <td className="same_class">{student.age}</td>
+                        <td className="same_class">{student.nationality}</td>
+                        <td className="same_class">
+                          <RiDeleteBin6Line
+                            size={25}
+                            color="red"
+                            onClick={() => handleDelete(student.id)}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <button className="btn-secondary">
+                <Link to="/student-reg">Add a student</Link>
+              </button>
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );

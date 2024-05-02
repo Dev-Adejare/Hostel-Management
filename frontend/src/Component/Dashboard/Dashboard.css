@@ -72,10 +72,11 @@
   .table {
     padding: 5px;
     width: var(--full-width);
-    /* overflow-x: auto; */
+    overflow-x: auto;
     border-radius: 12px;
     border: 1px solid #dbe0e5;
     background: #fff;
+    overflow: auto;
   }
 
   .table_wrapper {
@@ -118,8 +119,8 @@
 
   .right button {
     margin-top: 1.2em;
-    width: 480px;
-    height: 40px;
+    /* width: 480px; */
+    /* height: 40px; */
     padding: 0px 16px;
     color: #121417;
     font-family: var(--font-family);
@@ -129,8 +130,41 @@
     letter-spacing: 0.21px;
   }
 
+  .room-table {
+    max-width: 1600px;
+  }
+
   ._noBg {
     background: transparent;
+  }
+
+  .mobile-side-nav {
+    display: block;
+    position: fixed;
+    left: 0;
+    background-color: red;
+  }
+
+  .sidebar-toggle-iconB {
+    cursor: pointer;
+    font-size: 50px;
+    display: none;
+  }
+
+  @media(max-width:991px) {
+    .sidebar-toggle-iconB {
+       display: block;
+     }
+
+
+     .desktop-side-nav {
+      display: none;
+     }
+
+     .dash-main {
+       width: 100%;
+     }
+    
   }
 
 
