@@ -91,10 +91,14 @@ img {
   padding: 10px;
 }
 
-.--flex {
-  /* flex: 1 1 0%; */
-  display: flex;
+.--flex-1{
+  flex: 1 90px;
 }
+
+.--flex {
+  display:flex;
+}
+
 
 .--overflow-hidden {
   overflow: hidden;
@@ -142,10 +146,10 @@ img {
   flex-direction: column;
 }
 
-.--flex-dir-colomn {
+.--flex-dir-column {
   display: flex;
   flex-direction: column;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .--align-center {

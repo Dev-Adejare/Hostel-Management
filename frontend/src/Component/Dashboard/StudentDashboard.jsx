@@ -77,7 +77,7 @@ const StudentDashboard = () => {
         <Sidebar />
       </div>
 
-      <div className="--flex-dir-colomn --overflow-y-auto --overflow-x-hidden">
+      <div className="--flex-dir-column --overflow-y-auto --flex-1 --overflow-x-hidden">
         <main className="--flex-justify-center w-full">
           <div className="right dash-main">
             <div className="--flex-justify-between">
