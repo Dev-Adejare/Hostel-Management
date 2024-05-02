@@ -33,7 +33,7 @@ const HomeDash = () => {
   return (
     <div className="--flex-center _homeDashCon">
       <div className="__paraCon">
-        <h1 className="__paraHeader">Welcome back, Jackie!</h1>
+        <h1 className="__paraHeader">Welcome back, Dev_Ade👨‍💻</h1>
       </div>
 
       <div className="__secondCon">
