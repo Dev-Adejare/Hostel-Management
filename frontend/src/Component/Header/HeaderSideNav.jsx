@@ -5,17 +5,16 @@ import { Link } from "react-router-dom";
 const HeaderSideNav = ({ items, setNavToggle }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // const handleLinkClick = (index) => {
-  //     setActiveIndex(index)
-  // }
+  const handleLinkClick = (index) => {
+      setActiveIndex(index)
+  }
 
   return (
     <aside>
       <div className="--flex-end --sidebar-close">
         <FaTimes
           className="sidebar-toggle-icon"
-          onClick={() => setNavToggle(false)}
-        />
+          onClick={() => setNavToggle(false)}/>
       </div>
 
       <div className="left">
@@ -24,12 +23,12 @@ const HeaderSideNav = ({ items, setNavToggle }) => {
             <Link
               to={url}
               className={index === activeIndex ? "active-link" : ""}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => handleLinkClick(index)}
             >
               {title}
             </Link>
           </div>
-        ))}
+        ))};
 
         <div className="--flex-start --flex-center">
           <button className="btn-primary">New</button>
