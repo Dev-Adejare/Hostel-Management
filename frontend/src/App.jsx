@@ -35,9 +35,9 @@ function App() {
       <Route
         path="/homedash"
         element={
-          <Layout>
+          // <Layout>
             <HomeDash />
-          </Layout>
+          // {/* </Layout> */}
         }
       />
       <Route path="/studentdash" element={<StudentDashboard />} />
