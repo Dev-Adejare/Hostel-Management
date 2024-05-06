@@ -267,6 +267,28 @@
 }
 
 @media (max-width: 390px) {
+
+  ._homeDashCon {
+    margin: 5px 5px;
+  }
+
+  .__paraHeader {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .__quickTitle {
+    font-weight: 700;
+    padding: 15px;
+    font-size: 18px;
+  }
+
+  .__boardHead{
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+
   .__firstCon {
     padding: 5px;
   }
