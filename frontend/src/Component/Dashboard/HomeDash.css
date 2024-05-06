@@ -259,3 +259,11 @@
     font-weight: 700;
   }
 }
+
+@media (min-width: 290px) and (max-width: 400px) {
+  .container {
+    padding: 0;
+}
+}
+
+@media (max-width: px) 
