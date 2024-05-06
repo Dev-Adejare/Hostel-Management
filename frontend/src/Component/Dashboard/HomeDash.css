@@ -266,4 +266,12 @@
 }
 }
 
-@media (max-width: px) 
+@media (max-width: 390px) {
+  .__firstCon {
+    padding: 5px;
+  }
+
+  .__title {
+    
+  }
+}

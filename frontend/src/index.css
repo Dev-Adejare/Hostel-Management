@@ -272,3 +272,13 @@ img {
   }
 }
 
+@media (max-width: 390px) {
+  img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+}
+
