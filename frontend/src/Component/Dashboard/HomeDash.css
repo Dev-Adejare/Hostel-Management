@@ -272,6 +272,23 @@
   }
 
   .__title {
-    
+    font-size: 18px;
   }
+
+  .__lastTitle{
+    font-size: 18px;
+  }
+
+  .__homeBtn {
+    display: flex;
+    flex-direction: column ;
+  }
+
+  .__lastCon {
+    width: var(--full-width);
+    padding: 5px;
+  }
+   
+
 }
+
