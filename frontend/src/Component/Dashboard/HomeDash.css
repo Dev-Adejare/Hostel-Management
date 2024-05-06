@@ -194,10 +194,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  /* ._homeDashCon {
-        background-color: #1a80e5;
+  ._homeDashCon {
         margin: 20px 40px;
-    } */
+    }
 }
 
 @media (min-width: 750px) and (max-width: 767px) {
@@ -310,7 +309,7 @@
     width: var(--full-width);
     padding: 5px;
   }
-   
-
+  
 }
+
 
