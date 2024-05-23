@@ -105,12 +105,29 @@ const login = asyncHandler(async (req, res) => {
       res.status(500);
       throw new Error("Something went wrong!");
     }
-  } 
-  
-  catch (error) {
-    console.error(error.message)
-    res.status(500).send("Server Error")
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
   }
+});
+
+const getAdmins = asyncHandler(async (req, res) => {
+  try {
+    const { adminId } = req.params;
+
+    const admin = await Admin.findById(adminId);
+
+    if (admin) {
+      const { id, fullname, email, role } = admin;
+
+      res.status(200).json({
+        id,
+        fullname,
+        email,
+        role,
+      });
+    }
+  } catch (error) {}
 });
 
 module.exports = { register, login };
