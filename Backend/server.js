@@ -10,12 +10,11 @@ const connectDB = require("./config/DBConnect");
 const PORT = process.env.PORT || 3500;
 
 app.get("/", (req, res) => {
-    res.send("Hello Bossman!!!");
-})
+  res.send("Hello Bossman!!!");
+});
 connectDB();
 
 mongoose.connection.once("open", () => {
-    console.log("Database connected!");
-})
-
-app.listen(PORT, () => console.log `server running on port ${PORT}`)
+  console.log("Database connected!");
+  app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+});
