@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/AdminModel");
-const { generateToken } = require("../utilis/index");
+const generateToken = require("../utilis/index");
 
 const register = asyncHandler(async (req, res) => {
   try {
@@ -52,16 +52,47 @@ const register = asyncHandler(async (req, res) => {
         _id,
         fullname,
         email,
-        role, token
+        role,
+        token,
       });
     } else {
       res.status(400);
       throw new Error("Invalid data");
     }
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
 
-module.exports = {register}
+const login = asyncHandler(async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    let admin = await Admin.findOne({ email });
+
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found" });
+    }
+
+    const isMatch = await bcrypt.compare(password, admin.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid Credentials" });
+    }
+
+    const token = generateToken(admin._id);
+
+    if (admin && isMatch) {
+      res.cookie("token", token, {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 86400), // 1day
+        sameSite: "none",
+        secure: true,
+      });
+    }
+  } catch (error) {}
+});
+
+module.exports = { register };
