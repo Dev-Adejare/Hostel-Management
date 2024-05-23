@@ -7,22 +7,22 @@ const register = asyncHandler(async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
 
-    {
+    
       !fullname ||
         !email ||
-        (!password &&
+        !password &&
           (() => {
             res.status(400);
             throw new Error("Please! fill all the required fields");
-          }));
-    }
+          })()
+    
 
-    {
+    
       password.lenght < 6 &&
         (() => {
           res.status(400);
           throw new Error("Password must be up to 6 characters!");
-        });
-    }
+        })()
+
   } catch (error) {}
 });
