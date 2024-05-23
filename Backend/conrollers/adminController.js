@@ -111,23 +111,28 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
-const getAdmins = asyncHandler(async (req, res) => {
+const getAdmin = asyncHandler(async (req, res) => {
   try {
     const { adminId } = req.params;
 
     const admin = await Admin.findById(adminId);
 
     if (admin) {
-      const { id, fullname, email, role } = admin;
+      const { _id, fullname, email, role } = admin;
 
       res.status(200).json({
-        id,
+        _id,
         fullname,
         email,
         role,
       });
+    } else {
+      res.status(404).json({"message": "Admin not found"});
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
 });
 
-module.exports = { register, login };
+module.exports = { register, login, getAdmin };
