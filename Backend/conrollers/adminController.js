@@ -91,8 +91,26 @@ const login = asyncHandler(async (req, res) => {
         sameSite: "none",
         secure: true,
       });
+
+      const { _id, fullname, email, role } = admin;
+
+      res.status(201).json({
+        _id,
+        fullname,
+        email,
+        role,
+        token,
+      });
+    } else {
+      res.status(500);
+      throw new Error("Something went wrong!");
     }
-  } catch (error) {}
+  } 
+  
+  catch (error) {
+    console.error(error.message)
+    res.status(500).send("Server Error")
+  }
 });
 
-module.exports = { register };
+module.exports = { register, login };
