@@ -181,32 +181,25 @@ const getallAdmins = asyncHandler(async (req, res) => {
   }
 });
 
+
 //Update an Admin
-
 const updateAdmin = asyncHandler(async (req, res) => {
-  const admin = await Admin.findById(req.params._id);
 
-  if (admin) {
-    const {id, fullname, email, role} = admin
+  const { adminId } = req.params;
 
-    admin.email = email;
-    admin.fullname = fullname;
-    admin.role = role;
+    const admin = await Admin.findById(adminId).select("-password");
 
-    const updateAdmin = await Admin.save();
+    if (admin) {
 
-    res.status(200).json({
-      _id: updateAdmin._id,
-      fullname: updateAdmin.fullname,
-      email: updateAdmin.email,
-      role: updateAdmin.role,
-    })
-  }else {
-    res.status(404)
-    throw new Error("Admin not found");
-  }
+      if (req.body?.fullname) admin.fullname = req.body.fullname;
+      if (req.body?.email) admin.email = req.body.email;
+      if (req.body?.role) admin.role = req.body.role;
+  
+      const result = await admin.save()
 
+      res.json(result)
 
+}
 
 })
 
@@ -225,4 +218,4 @@ const updateAdmin = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { register, login, getAdmin, getallAdmins, deleteAdmin};
+module.exports = { register, login, getAdmin, getallAdmins, deleteAdmin, updateAdmin};
