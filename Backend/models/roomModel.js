@@ -12,7 +12,6 @@ const roomSchema = new mongoose.Schema({
   room_Occupancy: {
     type: String,
     Ref: "Student",
-    required: true,
   },
   room_Location: {
     type: String,
