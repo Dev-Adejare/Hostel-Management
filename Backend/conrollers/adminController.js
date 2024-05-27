@@ -68,7 +68,6 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
-
 //To LOgin an Admin
 const login = asyncHandler(async (req, res) => {
   try {
@@ -144,12 +143,11 @@ const getAdmin = asyncHandler(async (req, res) => {
   }
 });
 
-
 //Delete an Admin
 const deleteAdmin = asyncHandler(async (req, res) => {
   try {
     const { adminId } = req.params;
-    
+
     const admin = await Admin.findById(adminId);
 
     if (admin) {
@@ -163,7 +161,6 @@ const deleteAdmin = asyncHandler(async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 //Get details of all Admins
 const getallAdmins = asyncHandler(async (req, res) => {
@@ -181,62 +178,42 @@ const getallAdmins = asyncHandler(async (req, res) => {
   }
 });
 
-
 //Update an Admin
 const updateAdmin = asyncHandler(async (req, res) => {
-
   const { adminId } = req.params;
 
-    const admin = await Admin.findById(adminId).select("-password");
+  const admin = await Admin.findById(adminId).select("-password");
 
-    if (admin) {
+  if (admin) {
+    if (req.body?.fullname) admin.fullname = req.body.fullname;
+    if (req.body?.email) admin.email = req.body.email;
+    if (req.body?.role) admin.role = req.body.role;
 
-      if (req.body?.fullname) admin.fullname = req.body.fullname;
-      if (req.body?.email) admin.email = req.body.email;
-      if (req.body?.role) admin.role = req.body.role;
-  
-      const result = await admin.save()
+    const result = await admin.save();
 
-      res.json(result)
-
-}
-
-})
-
-
-//Logout Admin
-const logout = asyncHandler(async (req, res) => {
-  try {
-    res.cookie("token", "none", {
-      path: "/",
-      httpOnly: true,
-      expires: new Date(Date.now() + 1000 * 86400), // 1day
-      sameSite: "none",
-      secure: true,
-    });
-
-    res.status(200).json({ message: "Logged out successfully" });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+    res.json(result);
   }
 });
 
-module.exports = { register, login, getAdmin, getallAdmins, deleteAdmin, updateAdmin, logout};
+//Logout Admin
+const logout = asyncHandler(async (req, res) => {
+  res.cookie("token", "", {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000 * 86400), // 1day
+    sameSite: "none",
+    secure: true,
+  });
 
+  res.status(200).json({ message: "Logged out successfully" });
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = {
+  register,
+  login,
+  getAdmin,
+  getallAdmins,
+  deleteAdmin,
+  updateAdmin,
+  logout,
+};
