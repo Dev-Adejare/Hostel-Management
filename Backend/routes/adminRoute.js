@@ -1,5 +1,5 @@
 const express = require('express');
-const { register, login, getAdmin, deleteAdmin, getallAdmins, updateAdmin } = require('../conrollers/adminController');
+const { register, login, getAdmin, deleteAdmin, getallAdmins, updateAdmin, logout } = require('../conrollers/adminController');
 const router = express.Router();
 
 router.post("/register",  register);
@@ -8,6 +8,7 @@ router.get("/:adminId", getAdmin );
 router.delete("/:adminId", deleteAdmin );
 router.get("/", getallAdmins );
 router.put("/:adminId", updateAdmin );
+router.post("/logout", logout)
 
 
 module.exports = router

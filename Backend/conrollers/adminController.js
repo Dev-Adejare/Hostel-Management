@@ -204,6 +204,25 @@ const updateAdmin = asyncHandler(async (req, res) => {
 })
 
 
+//Logout Admin
+const logout = asyncHandler(async (req, res) => {
+  try {
+    res.cookie("token", "none", {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 86400), // 1day
+      sameSite: "none",
+      secure: true,
+    });
+
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+module.exports = { register, login, getAdmin, getallAdmins, deleteAdmin, updateAdmin, logout};
 
 
 
@@ -218,4 +237,6 @@ const updateAdmin = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { register, login, getAdmin, getallAdmins, deleteAdmin, updateAdmin};
+
+
+
