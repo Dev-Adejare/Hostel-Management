@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const roomSchema = mongoose.Schema({
+const roomSchema = new mongoose.Schema({
   room_Number: {
     type: Number,
     required: true,
@@ -20,7 +20,7 @@ const roomSchema = mongoose.Schema({
   },
   room_Status: {
     type: String,
-    required: true,
+    default: "Unavailable",
   },
 });
 
