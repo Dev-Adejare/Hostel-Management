@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const Admin = require("../models/AdminModel");
 const generateToken = require("../utilis/index");
 
-// Register new Admin
+//Register new Admin
 const register = asyncHandler(async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
@@ -68,8 +68,8 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
-// To LOgin an Admin
 
+//To LOgin an Admin
 const login = asyncHandler(async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -119,6 +119,7 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
+//Get details of a single Admin
 const getAdmin = asyncHandler(async (req, res) => {
   try {
     const { adminId } = req.params;
@@ -143,12 +144,12 @@ const getAdmin = asyncHandler(async (req, res) => {
   }
 });
 
-// Delete an Admin
 
+//Delete an Admin
 const deleteAdmin = asyncHandler(async (req, res) => {
   try {
     const { adminId } = req.params;
-
+    
     const admin = await Admin.findById(adminId);
 
     if (admin) {
@@ -164,9 +165,64 @@ const deleteAdmin = asyncHandler(async (req, res) => {
 });
 
 
+//Get details of all Admins
+const getallAdmins = asyncHandler(async (req, res) => {
+  try {
+    const admins = await Admin.find().sort("-createdAt").select("-password");
+
+    if (admins) {
+      res.status(200).json(admins);
+    } else {
+      res.status(404).json({ message: "Admins not found" });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+//Update an Admin
+
+const updateAdmin = asyncHandler(async (req, res) => {
+  const admin = await Admin.findById(req.params._id);
+
+  if (admin) {
+    const {id, fullname, email, role} = admin
+
+    admin.email = email;
+    admin.fullname = fullname;
+    admin.role = role;
+
+    const updateAdmin = await Admin.save();
+
+    res.status(200).json({
+      _id: updateAdmin._id,
+      fullname: updateAdmin.fullname,
+      email: updateAdmin.email,
+      role: updateAdmin.role,
+    })
+  }else {
+    res.status(404)
+    throw new Error("Admin not found");
+  }
+
+
+
+})
 
 
 
 
 
-module.exports = { register, login, getAdmin, deleteAdmin};
+
+
+
+
+
+
+
+
+
+
+
+module.exports = { register, login, getAdmin, getallAdmins, deleteAdmin};
