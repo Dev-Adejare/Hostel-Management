@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const Admin = require("../models/AdminModel");
 const generateToken = require("../utilis/index");
 
+// Register new Admin
 const register = asyncHandler(async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
@@ -21,6 +22,7 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("Password must be up to 6 characters!");
       })();
 
+    // Check if user already exists
     const adminExists = await Admin.findOne({ email });
 
     adminExists &&
@@ -29,6 +31,7 @@ const register = asyncHandler(async (req, res) => {
         throw new Error("Email already exists");
       })();
 
+    // Create new Admin
     const admin = await Admin.create({
       fullname,
       email,
@@ -65,16 +68,20 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
+// To LOgin an Admin
+
 const login = asyncHandler(async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    //Check if Admin exists by email
     let admin = await Admin.findOne({ email });
 
     if (!admin) {
       return res.status(404).json({ message: "Admin not found" });
     }
 
+    //Check Password
     const isMatch = await bcrypt.compare(password, admin.password);
 
     if (!isMatch) {
@@ -94,6 +101,7 @@ const login = asyncHandler(async (req, res) => {
 
       const { _id, fullname, email, role } = admin;
 
+      // send HTTP-only cookies
       res.status(201).json({
         _id,
         fullname,
@@ -127,12 +135,16 @@ const getAdmin = asyncHandler(async (req, res) => {
         role,
       });
     } else {
-      res.status(404).json({"message": "Admin not found"});
+      res.status(404).json({ message: "Admin not found" });
     }
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
+
+// Delete an Admin
+
+
 
 module.exports = { register, login, getAdmin };
