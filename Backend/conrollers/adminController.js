@@ -145,6 +145,28 @@ const getAdmin = asyncHandler(async (req, res) => {
 
 // Delete an Admin
 
+const deleteAdmin = asyncHandler(async (req, res) => {
+  try {
+    const { adminId } = req.params;
+
+    const admin = await Admin.findById(adminId);
+
+    if (admin) {
+      await admin.deleteOne();
+      res.status(200).json({ message: "Admin deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Admin not found" });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 
-module.exports = { register, login, getAdmin };
+
+
+
+
+
+module.exports = { register, login, getAdmin, deleteAdmin};
