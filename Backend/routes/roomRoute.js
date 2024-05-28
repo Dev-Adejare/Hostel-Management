@@ -5,8 +5,8 @@ const router = express.Router();
 router.post("/create", createNewRoom);
 router.get("/", getAllRoom);
 router.get("/:roomId", getRoom);
-router.put("/:roomId", updateRoom );
-router.delete("/:roomId", deleteRoom );
+router.patch("/update/:roomId", updateRoom );
+router.delete("/delete/:roomId", deleteRoom );
 
 
 

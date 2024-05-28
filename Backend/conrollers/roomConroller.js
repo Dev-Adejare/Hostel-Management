@@ -46,7 +46,7 @@ const getAllRoom = asyncHandler(async (req, res) => {
     const roomId = req.params.roomId;
   
     try {
-      const room = await Room.findById(roomId).sort("-createdAt");
+      const room = await Room.findById(roomId);
   
       if (room ) {
         const { _id,  roomNumber, roomCapacity,  roomOccupancy, roomLocation, roomStatus } = room;
@@ -66,7 +66,7 @@ const getAllRoom = asyncHandler(async (req, res) => {
     const roomId = req.params.roomId;
   
     try {
-      const room = await Room.findById(roomId).sort("-createdAt");
+      const room = await Room.findById(roomId).sort("-created");
   
       if (room) {
         const { _id,  roomNumber, roomCapacity,  roomOccupancy, roomLocation, roomStatus } = room;
