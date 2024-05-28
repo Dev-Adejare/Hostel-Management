@@ -10,21 +10,23 @@ const guardianScheme = new mongoose.Scheme({
         required: [true, 'Please add a valid email address'],
         trim: true,
         unique: true
+    }
+})
+
+const studentSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        required: true,
+        unique: true
     },
-    guardianPhone: {
+    name: {
+        type: String,
+        required: true
+    },
+    age: {
         type: Number,
         required: true
     },
-    guardianAddress: {
-        type: String,
-        required: true
-    },
-    guardianOccupation: {
-        type: String,
-        required: true
-    },
-    guardianRelation: {
-        type: String,
-        required: true
-    }
+    
 })
+  
