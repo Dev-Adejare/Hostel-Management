@@ -21,7 +21,7 @@ const roomSchema = new mongoose.Schema({
     type: String,
     default: "Unavailable",
   },
-});
+}, {timestamps: true });
 
 const Room = mongoose.model("Room", roomSchema);
 module.exports = Room;
