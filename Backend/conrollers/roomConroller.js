@@ -9,14 +9,14 @@ const createNewRoom = asyncHandler(async (req, res) => {
 
     !roomNumber || !roomCapacity || !roomLocation && (() => { res.status(400); throw new Error("please fill all the require fields"); })();
 
-    const roomExists = await Room.findOne({ roomNumber }).sort("-createdAt");
+    const roomExists = await Room.findOne({ roomNumber });
 
-    roomExists && (() => { res.status(400); throw new Error("room number already exists") });
+    roomExists && (() => { res.status(400); throw new Error("room number already exists") })();
 
 
     const room = await Room.create({
         roomNumber, roomCapacity, roomLocation, roomOccupancy, roomStatus
-      })
+      }).sort("-createdAt");
 
 
       if (room) {
