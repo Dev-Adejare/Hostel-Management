@@ -72,28 +72,41 @@ const getAllRoom = asyncHandler(async (req, res) => {
  
   //Update Room
   const updateRoom = asyncHandler(async (req, res) => {
+    const roomId = req.params.roomId;
   
-      const { roomId } = req.params;
-  
+    try {
       const room = await Room.findById(roomId);
   
-  
-      if (!room) {
-          res.status(404).json({ error: "room not found" })
-      }
       if (room) {
+        const { _id,  roomNumber, roomCapacity,  roomOccupancy, roomLocation, roomStatus } = room;
   
-          if (req.body?.roomNumber) room.roomNumber = req.body.roomNumber;
-          if (req.body?.roomCapacity) room.roomCapacity = req.body.roomCapacity;
-          if (req.body?.roomLocation) room.roomLocation = req.body.roomLocation;
+        room.roomNumber = req.body.roomNumber || roomNumber;
+        room.roomCapacity = req.body.roomCapacity || roomCapacity;
+        room.roomOccupancy = req.body.roomOccupancy || roomOccupancy;
+        room.roomLocation = req.body.roomLocation || roomLocation;
+        room.roomStatus  = req.body.roomStatus  || roomStatus ;
+        
   
-          const result = await room.save()
+        const updatedRoom = await room.save();
   
-          res.json(result)
-  
+        res.status(201).json({
+          _id: updatedRoom._id,
+          roomStatus : updatedRoom.roomStatus ,
+          roomCapacity: updatedRoom.roomCapacity,
+          roomOccupancy: updatedRoom.roomOccupancy,
+          roomLocation: updatedRoom.roomLocation,
+          roomStatus: updatedRoom.roomStatus,
+          
+        });
+      } else {
+        res.status(404);
+        throw new Error("Room not found");
       }
-  
-  })
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   
   //Delete Room
   const deleteRoom = asyncHandler(async (req, res) => {
