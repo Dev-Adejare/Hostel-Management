@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const guardianScheme = new mongoose.Scheme({
+const guardianSchema = new mongoose.Scheme({
     guardianName: {
         type: String,
         required: true
@@ -27,6 +27,34 @@ const studentSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    
+    gender: {
+        type: String,
+        required: true,
+        enum: ['male', 'female', 'others'],
+    },
+    nationality: {
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        required: [true, 'Please add a valid email address'],
+        trim: true,
+        unique: true
+    },
+    guardian: guardianSchema, 
+    room: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Room',
+        default: null,
+    },
+    role:{
+        type: String,
+        default:'Student'
+    }
+
+
+
+
 })
   

@@ -9,10 +9,10 @@ const roomSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  roomOccupancy: {
+  roomOccupancy: [{
     type: String,
     Ref: "Student",
-  },
+  }],
   roomLocation: {
     type: String,
     required: true,
