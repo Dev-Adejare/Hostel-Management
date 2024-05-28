@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema({
-  room_Number: {
+  roomNumber: {
     type: Number,
     required: true,
   },
-  room_Capacity: {
+  roomCapacity: {
     type: Number,
     required: true,
   },
-  room_Occupancy: {
+  roomOccupancy: {
     type: String,
     Ref: "Student",
   },
-  room_Location: {
+  roomLocation: {
     type: String,
     required: true,
   },
-  room_Status: {
+  roomStatus: {
     type: String,
     default: "Unavailable",
   },
