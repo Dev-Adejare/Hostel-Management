@@ -69,3 +69,9 @@ const studentSchema = new mongoose.Schema(
   },
   { timestamps: true, minimize: false, toJSON: { getters: flase } }
 );
+
+studentSchema.methods.checkedIn = function() {
+    this.checkedIn = true;
+    this.checkedInTime = Date.now();
+    this.checkedOutTime = null;
+} 
