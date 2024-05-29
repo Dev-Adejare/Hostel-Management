@@ -17,7 +17,14 @@ const ensureUniqueId = async () => {
 }
 
 // To Register student
-const registerStudent = asyncHandler (async(req, res) => {});
+const registerStudent = asyncHandler (async(req, res) => {
+    const {name, age, gender, nationality, email, g_name, g_mail, roomNum} = req.body;
+
+    if (!name || !age || !gender || !nationality || !email || !g_name || !g_mail || roomNum) {
+        res.status(400);
+        throw new Error("Please! fill all the required fields");
+    }
+});
 
 //To get all Student
 const getAllStudents = asyncHandler (async(req, res) => {});
