@@ -9,7 +9,7 @@ const connectDB = require("./config/DBConnect");
 const errorHandler = require("./middleware/errorMiddleware");
 const adminRoute = require("./routes/adminRoute");
 const roomRoute = require("./routes/roomRoute");
-const
+const studentRoute = require("./routes/studentRoute");
 
 const PORT = process.env.PORT || 3500;
 

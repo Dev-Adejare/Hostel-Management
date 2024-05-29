@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const guardianSchema = new mongoose.Scheme({
+const guardianSchema = new mongoose.Schema({
   guardianName: {
     type: String,
     required: true,
@@ -15,11 +15,7 @@ const guardianSchema = new mongoose.Scheme({
 
 const studentSchema = new mongoose.Schema(
   {
-    _id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+    
     name: {
       type: String,
       required: true,
@@ -67,7 +63,7 @@ const studentSchema = new mongoose.Schema(
       default: null,
     },
   },
-  { timestamps: true, minimize: false, toJSON: { getters: flase } }
+  { timestamps: true, minimize: false, toJSON: { getters: false } }
 );
 
 studentSchema.methods.checkIn = function() {

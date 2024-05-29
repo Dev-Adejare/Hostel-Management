@@ -3,17 +3,18 @@ const Student = require("../models/studentModel");
 const Room = require("../models/roomModel");
 const generateUniqueId = require("../utilis/generateUniqueId");
 
-const ensureUniqueId = async () => {
-  let uniqueId;
-  let idExists = true;
+// const ensureUniqueId = async () => {
+//   let uniqueId;
+//   let idExists = true;
 
-  while (idExists) {
-    uniqueId = generateUniqueId();
-    const existingStudent = await Student.findById(uniqueId);
-    idExists = !!existingStudent;
-  }
-  return uniqueId;
-};
+//   while (idExists) {
+//     uniqueId = generateUniqueId();
+//     const existingStudent = await Student.findById(uniqueId);
+//     idExists = !!existingStudent;
+//   }
+//   return uniqueId;
+// };
+
 
 // To Register student
 const registerStudent = asyncHandler(async (req, res) => {
@@ -28,14 +29,14 @@ const registerStudent = asyncHandler(async (req, res) => {
     !email ||
     !g_name ||
     !g_mail ||
-    roomNum
+    !roomNum
   ) {
     res.status(400);
     throw new Error("Please! fill all the required fields");
   }
 
   //To check if Student is already Existing
-  const studentExists = await Student.find({ email });
+  const studentExists = await Student.findOne({ email });
 
   if (studentExists) {
     return res.status(400).json({ message: "Student already exists!" });
@@ -52,10 +53,10 @@ const registerStudent = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Room not available!" });
   }
 
-  const uniqueId = ensureUniqueId();
+//   const uniqueId = ensureUniqueId();
 
   const student = await Student.create({
-    _id: uniqueId,
+    // _id: uniqueId,
     name,
     age,
     nationality,
@@ -66,6 +67,7 @@ const registerStudent = asyncHandler(async (req, res) => {
     },
     gender,
     room: room._id,
+    checkedIn: true,
   });
 
   room.roomOccupancy.push(student._id);
@@ -105,5 +107,4 @@ module.exports = {
   changeStudentRoom,
   updateCheckInStatus,
   deleteStudent,
-  ensureUniqueId,
 };
