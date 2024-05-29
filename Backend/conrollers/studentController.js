@@ -67,6 +67,12 @@ const registerStudent = asyncHandler(async (req, res) => {
     gender,
     room: room._id,
   });
+
+  room.roomOccupancy.push(student._id);
+
+  if(room.roomOccupancy.length >= room.roomCapacity) {
+    room.roomStatus = "occupied";
+  }
 });
 
 //To get all Student
