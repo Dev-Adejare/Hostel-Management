@@ -5,4 +5,8 @@ const generaUniqueId = () => {
   const letter =
     String.fromCharCode(65 + Math.floor(Math.random() * 26)) +
     String.fromCharCode(65 + Math.floor(Math.random() * 26));
+
+    return number.toString() + letter;
 };
+
+module.exports = generaUniqueId;
