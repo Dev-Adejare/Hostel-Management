@@ -41,7 +41,7 @@ const registerStudent = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Student already exists!" });
   }
 
-  //To Check if Room is already Existing
+  //To Get a Room by its Room number
   const room = await Room.findOne({ roomNumber: roomNum });
 
   if (!room) {
@@ -52,7 +52,7 @@ const registerStudent = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Room not available!" });
   }
 
-  const uniqueId = ensureUniqueId;
+  const uniqueId = ensureUniqueId();
 
   const student = await Student.create({
     _id: uniqueId,
