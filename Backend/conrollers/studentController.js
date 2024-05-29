@@ -23,7 +23,15 @@ const registerStudent = asyncHandler (async(req, res) => {
     if (!name || !age || !gender || !nationality || !email || !g_name || !g_mail || roomNum) {
         res.status(400);
         throw new Error("Please! fill all the required fields");
-    }
+    };
+
+    //To check if Student is already Existing
+
+    const studentExists = await Student.find({ email });
+
+    if (studentExists){
+        return res.status(400).json({message: "Student already exists!"})
+    } 
 });
 
 //To get all Student
