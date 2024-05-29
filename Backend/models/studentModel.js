@@ -15,7 +15,11 @@ const guardianSchema = new mongoose.Schema({
 
 const studentSchema = new mongoose.Schema(
   {
-    
+    _id: {
+      type: String,
+      required: true,
+      unique: true,
+    }, 
     name: {
       type: String,
       required: true,
