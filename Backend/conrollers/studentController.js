@@ -129,53 +129,54 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
 
 //To change student Room
 const changeStudentRoom = asyncHandler(async (req, res) => {
-  const { studentId, newRoomNum} = req.body;
+  const { studentId, newRoomNum } = req.body;
 
-  const student = await Student.findById(studentId)
+  const student = await Student.findById(studentId);
 
   if (!student) {
     res.status(404);
     throw new Error("Student not found!");
   }
 
-  const currentRoom = await Room.findById(student.room)
+  const currentRoom = await Room.findById(student.room);
 
   if (currentRoom) {
     currentRoom.roomOccupancy = currentRoom.roomOccupancy.filter(
-      (occupant) => occupant.toString()!== studentId
+      (occupant) => occupant.toString() !== studentId
     );
 
-    if (currentRoom.roomOccupancy.length < currentRoom.roomCapacity){
+    if (currentRoom.roomOccupancy.length < currentRoom.roomCapacity) {
       currentRoom.roomStatus = "available";
     }
     await currentRoom.save();
   }
   const newRoom = await Room.findOne({ roomNumber: newRoomNum });
 
-  if (!newRoom){
-    return res.status(404).json({msg: "New room not found!"});
+  if (!newRoom) {
+    return res.status(404).json({ msg: "New room not found!" });
   }
 
-  if(newRoom.roomStatus !== "available"){
-    return res.status(400).json({msg: "New room is not available!"});
+  if (newRoom.roomStatus !== "available") {
+    return res.status(400).json({ msg: "New room is not available!" });
   }
 
   student.room = newRoom._id;
   newRoom.roomOccupancy.push(student._id);
 
-  if(newRoom.roomOccupancy.length >= newRoom.roomOccupancy.roomCapacity){
+  if (newRoom.roomOccupancy.length >= newRoom.roomOccupancy.roomCapacity) {
     newRoom.roomStatus = "unavailable";
   }
+  await newRoom.save();
+  await student.save();
 
+  res.status(200).json({msg: "Room changed successfully",  student, newRoom});
 });
 
 //To update checkIn status
 const updateCheckInStatus = asyncHandler(async (req, res) => {});
 
 //To Delete Student
-const deleteStudent = asyncHandler(async (req, res) => {
- 
-});
+const deleteStudent = asyncHandler(async (req, res) => {});
 
 module.exports = {
   registerStudent,
