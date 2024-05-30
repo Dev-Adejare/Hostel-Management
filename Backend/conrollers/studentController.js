@@ -199,7 +199,7 @@ const updateCheckInStatus = asyncHandler(async (req, res) => {
 
 //To Delete Student
 const deleteStudent = asyncHandler(async (req, res) => {
-  const studentId = req.params.studentId
+  const studentId = req.params.studentId;
 
   try {
     const student = await Student.findById(studentId);
@@ -209,20 +209,25 @@ const deleteStudent = asyncHandler(async (req, res) => {
       throw new Error("Student not found!");
     }
 
-    const room = await Room.findById(student.room)
+    const room = await Room.findById(student.room);
 
     if (room) {
       room.roomOccupancy = room.roomOccupancy.filter(
-        (occupant) =>occupant.toString() !== studentId
-      )
+        (occupant) => occupant.toString() !== studentId
+      );
 
-      if (room.roomOccupancy.length < room.roomCapacity){
-        room.roomStatus = "available"
+      if (room.roomOccupancy.length < room.roomCapacity) {
+        room.roomStatus = "available";
       }
+
+      await room.save();
     }
-    
+
+    await student.deleteOne();
+    res.status(200).json({ msg: "Student deleted successfully" });
   } catch (error) {
-    
+    console.error(error.message);
+    res.status(500).json({ msg: "internal server error" });
   }
 });
 
