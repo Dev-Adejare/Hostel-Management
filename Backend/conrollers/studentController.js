@@ -193,7 +193,7 @@ const updateCheckInStatus = asyncHandler(async (req, res) => {
     })
   }
 
-  const updateStudent = await student.save();
+   await student.save();
   res.status(200).json(updateStudent);
 });
 
