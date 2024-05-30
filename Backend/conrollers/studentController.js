@@ -128,7 +128,16 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
 });
 
 //To change student Room
-const changeStudentRoom = asyncHandler(async (req, res) => {});
+const changeStudentRoom = asyncHandler(async (req, res) => {
+  const { studentId, newRoomNum} = req.body;
+
+  const student = await Student.findById(studentId)
+
+  if (!student) {
+    res.status(404);
+    throw new Error("Student not found!");
+  }
+});
 
 //To update checkIn status
 const updateCheckInStatus = asyncHandler(async (req, res) => {});
