@@ -194,11 +194,26 @@ const updateCheckInStatus = asyncHandler(async (req, res) => {
   }
 
    await student.save();
-  res.status(200).json(updateStudent);
+  res.status(200).json({msg:`Student ${action} successfully`, student});
 });
 
 //To Delete Student
-const deleteStudent = asyncHandler(async (req, res) => {});
+const deleteStudent = asyncHandler(async (req, res) => {
+  try {
+
+    const student = await Student.findById(req.params._id);
+
+    if (student) {
+      await Student.deleteOne();
+      res.status(200).json({ message: "Student deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Student not found" });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = {
   registerStudent,
