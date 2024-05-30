@@ -137,6 +137,29 @@ const changeStudentRoom = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Student not found!");
   }
+
+  const currentRoom = await Room.findById(student.room)
+
+  if (currentRoom) {
+    currentRoom.roomOccupancy = currentRoom.roomOccupancy.filter(
+      (occupant) => occupant.toString()!== studentId
+    );
+
+    if (currentRoom.roomOccupancy.length < currentRoom.roomCapacity){
+      currentRoom.roomStatus = "available";
+    }
+    await currentRoom.save();
+  }
+  const newRoom = await Room.findOne({ roomNumber: newRoomNum });
+
+  if (!newRoom){
+    return res.status(404).json({msg: "New room not found!"});
+  }
+
+  if(newRoom.roomStatus !== "available"){
+    return res.status(400).json({msg: "New room is not available!"});
+  }
+
 });
 
 //To update checkIn status
