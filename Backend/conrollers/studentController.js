@@ -169,12 +169,12 @@ const changeStudentRoom = asyncHandler(async (req, res) => {
   await newRoom.save();
   await student.save();
 
-  res.status(200).json({msg: "Room changed successfully",  student, newRoom});
+  res.status(200).json({ msg: "Room changed successfully", student, newRoom });
 });
 
 //To update checkIn status
 const updateCheckInStatus = asyncHandler(async (req, res) => {
-  const {studentId, action} = req.body
+  const { studentId, action } = req.body;
 
   const student = await Student.findById(studentId);
 
@@ -187,31 +187,42 @@ const updateCheckInStatus = asyncHandler(async (req, res) => {
     student.checkIn();
   } else if (action === "checkOut") {
     student.checkOut();
-  }else{
+  } else {
     return res.status(400).json({
       msg: "Invalid action",
-    })
+    });
   }
 
-   await student.save();
-  res.status(200).json({msg:`Student ${action} successfully`, student});
+  await student.save();
+  res.status(200).json({ msg: `Student ${action} successfully`, student });
 });
 
 //To Delete Student
 const deleteStudent = asyncHandler(async (req, res) => {
+  const studentId = req.params.studentId
+
   try {
+    const student = await Student.findById(studentId);
 
-    const student = await Student.findById(req.params._id);
-
-    if (student) {
-      await Student.deleteOne();
-      res.status(200).json({ message: "Student deleted successfully" });
-    } else {
-      res.status(404).json({ message: "Student not found" });
+    if (!student) {
+      res.status(404);
+      throw new Error("Student not found!");
     }
+
+    const room = await Room.findById(student.room)
+
+    if (room) {
+      room.roomOccupancy = room.roomOccupancy.filter(
+        (occupant) =>occupant.toString() !== studentId
+      )
+
+      if (room.roomOccupancy.length < room.roomCapacity){
+        room.roomStatus = "available"
+      }
+    }
+    
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+    
   }
 });
 
