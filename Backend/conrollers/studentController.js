@@ -160,6 +160,13 @@ const changeStudentRoom = asyncHandler(async (req, res) => {
     return res.status(400).json({msg: "New room is not available!"});
   }
 
+  student.room = newRoom._id;
+  newRoom.roomOccupancy.push(student._id);
+
+  if(newRoom.roomOccupancy.length >= newRoom.roomOccupancy.roomCapacity){
+    newRoom.roomStatus = "unavailable";
+  }
+
 });
 
 //To update checkIn status
