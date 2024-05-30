@@ -199,7 +199,7 @@ const updateCheckInStatus = asyncHandler(async (req, res) => {
 
 //To Delete Student
 const deleteStudent = asyncHandler(async (req, res) => {
-  const studentId = req.params.studentId;
+  const studentId = req.params._id;
 
   try {
     const student = await Student.findById(studentId);
@@ -230,6 +230,13 @@ const deleteStudent = asyncHandler(async (req, res) => {
     res.status(500).json({ msg: "internal server error" });
   }
 });
+
+
+
+
+
+module.exports = deleteStudent;
+
 
 module.exports = {
   registerStudent,
