@@ -61,7 +61,7 @@ const registerStudent = asyncHandler(async (req, res) => {
       age,
       nationality,
       guardian: {
-        g_name: g_name,
+        guardianName: g_name,
         guardianEmail: g_email,
       },
       gender,
@@ -173,7 +173,29 @@ const changeStudentRoom = asyncHandler(async (req, res) => {
 });
 
 //To update checkIn status
-const updateCheckInStatus = asyncHandler(async (req, res) => {});
+const updateCheckInStatus = asyncHandler(async (req, res) => {
+  const {studentId, action} = req.body
+
+  const student = await Student.findById(studentId);
+
+  if (!student) {
+    res.status(404);
+    throw new Error("Student not found!");
+  }
+
+  if (action === "checkIn") {
+    student.checkIn();
+  } else if (action === "checkOut") {
+    student.checkOut();
+  }else{
+    return res.status(400).json({
+      msg: "Invalid action",
+    })
+  }
+
+  const updateStudent = await student.save();
+  res.status(200).json(updateStudent);
+});
 
 //To Delete Student
 const deleteStudent = asyncHandler(async (req, res) => {});
