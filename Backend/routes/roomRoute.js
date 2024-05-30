@@ -9,10 +9,10 @@ const {
 const router = express.Router();
 const { protect } = require("../middleware/authMiddleware");
 
-router.post("/create", protect, createNewRoom);
-router.get("/", protect, getAllRoom);
+router.post("/createNewRoom", protect, createNewRoom);
+router.get("/get-all-room", protect, getAllRoom);
 router.get("/:roomId", protect, getRoom);
-router.patch("/update/:roomId", protect, updateRoom);
-router.delete("/delete/:roomId", protect, deleteRoom);
+router.patch("/update-room/:roomId", protect, updateRoom);
+router.delete("/delete-room/:roomId", protect, deleteRoom);
 
 module.exports = router;
