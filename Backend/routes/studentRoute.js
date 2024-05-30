@@ -1,7 +1,14 @@
-const express = require('express');
-const {registerStudent, getAllStudents, getStudent, updateStudentProfile, changeStudentRoom, updateCheckInStatus, deleteStudent } = require('../conrollers/studentController');
+const express = require("express");
+const {
+  registerStudent,
+  getAllStudents,
+  getStudent,
+  updateStudentProfile,
+  changeStudentRoom,
+  updateCheckInStatus,
+  deleteStudent,
+} = require("../conrollers/studentController");
 const router = express.Router();
-
 
 router.post("/register-student", registerStudent);
 router.get("/", getAllStudents);
