@@ -2,6 +2,7 @@ import React from "react";
 import "./HomeDash.css";
 import { lady, blacky, bash, tallest } from "../../assets";
 import { Link } from "react-router-dom";
+import useAuthRedirect from "../../../context/useAuth";
 
 const HomeDash = () => {
   const activities = [
@@ -129,36 +130,34 @@ const HomeDash = () => {
 
         {activities.map((activity, index) => (
           <div className="__users" key={index}>
-           <div className="__firstUserPic">
-            <img src={activity.userPic} alt="lady-picture" />
-          </div>
-
-          <div className="__userData">
-            <div>
-              <h5>{activity.userName}</h5>
-
-              <p>{activity.action}</p>
+            <div className="__firstUserPic">
+              <img src={activity.userPic} alt="lady-picture" />
             </div>
 
-            <p>{activity.time}</p>
-          </div>
+            <div className="__userData">
+              <div>
+                <h5>{activity.userName}</h5>
+
+                <p>{activity.action}</p>
+              </div>
+
+              <p>{activity.time}</p>
+            </div>
           </div>
         ))}
       </div>
 
       <div className="__lastCon">
         <h3 className="__lastTitle">Quick Actions</h3>
-      
 
-      <div className="__homeBtn">
-        <button className="__addBtn">
-          <Link to="/student-reg">Add a student</Link>
-        </button>
-        <button className="__attendBtn">
-          <Link to="/attendance">Attendance</Link>
-        </button>
-        
-      </div>
+        <div className="__homeBtn">
+          <button className="__addBtn">
+            <Link to="/student-reg">Add a student</Link>
+          </button>
+          <button className="__attendBtn">
+            <Link to="/attendance">Attendance</Link>
+          </button>
+        </div>
       </div>
     </div>
   );
