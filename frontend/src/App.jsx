@@ -8,8 +8,6 @@ import StudentDashboard from "./Component/Dashboard/StudentDashboard";
 import Rooms from "./Component/Dashboard/Rooms";
 import AdminPreview from "./Component/AdminPreview/AdminPreview";
 import Attendance from "./Component/Attendance/Attendance";
-import Loader from "./Component/Loader/Loader";
-import { useEffect, useState } from "react";
 
 function App() {
   const renderRoute = () => (
