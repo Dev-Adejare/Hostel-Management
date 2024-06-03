@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PasswordInput.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 

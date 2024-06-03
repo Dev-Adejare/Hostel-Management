@@ -1,10 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Register.css";
 import Loader from "../Loader/Loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import PasswordInput from "../PasswordInput/PasswordInput";
+import {UserContext} from "../../../context/userContext";
+import axios from "axios";
+import {toast} from "react-toastify";
+import {FaTimes} from "react-icons/fa"
+import {BsCheck2All} from "react-icons/bs"
 
 const AdminReg = () => {
   const [loading, setLoading] = useState(true);
+  const {setUser} = useContext(UserContext);
+  const [formValidMessage, setFormValidMessage] = useState(false);
+  const [formCompleted, setFormCompleted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,25 +54,13 @@ const AdminReg = () => {
               </div>
 
               <div className="--dir-column">
-                <label htmlFor="name">Password:</label>
-                <input
-                  type="password"
-                  className="input"
-                  name="password"
-                  placeholder="Enter your password"
-                  required
-                />
+                <label htmlFor="password">Password:</label>
+                <PasswordInput placeholder="password" name="password" />
               </div>
 
               <div className="--dir-column">
                 <label htmlFor="name">Confirm password:</label>
-                <input
-                  type="password"
-                  className="input"
-                  name="password"
-                  placeholder="Re-enter your password"
-                  required
-                />
+                <PasswordInput placeholder="password" name="password" />
               </div>
               <button className="--btn">Create account</button>
             </form>
