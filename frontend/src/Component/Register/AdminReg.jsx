@@ -15,6 +15,17 @@ const AdminReg = () => {
   const [formValidMessage, setFormValidMessage] = useState(false);
   const [formCompleted, setFormCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email:"",
+    password:"",
+    Password2:""
+  });
+
+  const navigate = useNavigate();
+
+  const timesIcon = <FaTimes color="red" size={20}/>;
+  const checkIcon = <BsCheck2All color="green" size={20}/>;
 
   useEffect(() => {
     setTimeout(() => {
