@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback,useContext, useEffect, useState } from "react";
 import "./Register.css";
 import Loader from "../Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
