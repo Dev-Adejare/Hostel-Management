@@ -22,10 +22,31 @@ const AdminReg = () => {
     Password2:""
   });
 
+  const [uCase, setUcase] = useState(false);
+  const [num, setNum] = useState(false);
+  const [sChar, setSChar] = useState(false);
+  const [passLength, setPassLength] = useState(false);
+
   const navigate = useNavigate();
 
   const timesIcon = <FaTimes color="red" size={20}/>;
   const checkIcon = <BsCheck2All color="green" size={20}/>;
+
+  const switchIcon = (condition) => {
+    return condition ? checkIcon : timesIcon;
+  }
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setFormData((prevFormData) => ({
+     ...prevFormData,
+      [name]: value,
+    }));
+  }
+
+  useEffect(() => {
+    const {password} = formData;
+  })
 
   useEffect(() => {
     setTimeout(() => {
