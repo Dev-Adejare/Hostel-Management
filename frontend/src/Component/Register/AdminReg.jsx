@@ -19,7 +19,7 @@ const AdminReg = () => {
     fullname: "",
     email: "",
     password: "",
-    Password2: "",
+    password2: "",
   });
 
   const [uCase, setUCase] = useState(false);
@@ -57,14 +57,14 @@ const AdminReg = () => {
     (event) => {
       event.preventDefault();
 
-      const { fullname, email, password, Password2 } = formData;
+      const { fullname, email, password, password2 } = formData;
 
-      if (!fullname || !email || !password || !Password2) {
+      if (!fullname || !email || !password || !password2) {
         setFormValidMessage("oop!! All fields are required 😏");
         return;
       }
 
-      if (password !== Password2) {
+      if (password !== password2) {
         setFormValidMessage("Passwords do not match");
         return;
       }
@@ -72,7 +72,7 @@ const AdminReg = () => {
       setIsSubmitting(true);
 
       axios
-        .post("http:localhost:3500/admin/register", formData)
+        .post("http://localhost:3500/admin/register", formData)
         .then((response) => {
           setUser(response.data);
           setIsSubmitting(false);
@@ -148,7 +148,7 @@ const AdminReg = () => {
                 <PasswordInput
                   placeholder="password"
                   name="password2"
-                  value={formData.Password2}
+                  value={formData.password2}
                   onChange={handleInputChange}
                   onPaste={(e) => {
                     e.preventDefault();
@@ -182,11 +182,11 @@ const AdminReg = () => {
                 </ul>
               </div>
               <button className="--btn" disabled={isSubmitting}>
-                {isSubmitting ? "Signing you up..." : "Create Account"}Create account</button>
+                {isSubmitting ? "Signing you up..." : "Create Account"}</button>
             </form>
+            {formValidMessage && <p>{formValidMessage}</p>}
             <p>
               Already have an account? <Link to="/login">Login</Link> ||{" "}
-              <Link to="/homedash">Go Home</Link>
             </p>
           </div>
         </div>
