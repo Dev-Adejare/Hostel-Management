@@ -46,7 +46,7 @@ function App() {
     </Routes>
   );
 
-  return <>{loading ? <Loader /> : renderRoute()}</>;
+  return <>{renderRoute()}</>;
 }
 
 export default App;
