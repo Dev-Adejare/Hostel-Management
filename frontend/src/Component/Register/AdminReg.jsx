@@ -1,4 +1,4 @@
-import React, { useCallback,useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./Register.css";
 import Loader from "../Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
@@ -152,13 +152,37 @@ const AdminReg = () => {
                   onChange={handleInputChange}
                   onPaste={(e) => {
                     e.preventDefault();
-                    toast.error("Cannot paste into input field")
-                  }
-
-                  }
+                    toast.error("Cannot paste into input field");
+                  }}
                 />
               </div>
-              <button className="--btn">Create account</button>
+
+              <div className="card">
+                <ul className="form-list">
+                  <li>
+                    <span className="indicator">
+                      {switchIcon(uCase)} &nbsp; Lowercase & Uppercase
+                    </span>
+                  </li>
+                  <li>
+                    <span className="indicator">
+                      {switchIcon(num)} &nbsp; Number(0-9)
+                    </span>
+                  </li>
+                  <li>
+                    <span className="indicator">
+                      {switchIcon(sChar)} &nbsp; Special Character(!@#$%^&*)
+                    </span>
+                  </li>
+                  <li>
+                    <span className="indicator">
+                      {switchIcon(passLength)} &nbsp; Minimum 6 characters
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <button className="--btn" disabled={isSubmitting}>
+                {isSubmitting ? "Signing you up..." : "Create Account"}Create account</button>
             </form>
             <p>
               Already have an account? <Link to="/login">Login</Link> ||{" "}
