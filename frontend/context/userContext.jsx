@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const Usercontext = createContext();
 
-export const Userprovider = ({children}) => {
+const Userprovider = ({children}) => {
     const [user, setUser] = useState(() => {
         const savedUser = localStorage.getItem('user');
         return savedUser? JSON.parse(savedUser) : null;
@@ -21,4 +21,6 @@ export const Userprovider = ({children}) => {
             {children}
         </Usercontext.Provider>
     )
-}
+};
+
+export default Userprovider
