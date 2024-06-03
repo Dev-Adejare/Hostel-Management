@@ -3,50 +3,91 @@ import "./Register.css";
 import Loader from "../Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordInput from "../PasswordInput/PasswordInput";
-import {UserContext} from "../../../context/userContext";
+import { UserContext } from "../../../context/userContext";
 import axios from "axios";
-import {toast} from "react-toastify";
-import {FaTimes} from "react-icons/fa"
-import {BsCheck2All} from "react-icons/bs"
+import { toast } from "react-toastify";
+import { FaTimes } from "react-icons/fa";
+import { BsCheck2All } from "react-icons/bs";
 
 const AdminReg = () => {
   const [loading, setLoading] = useState(true);
-  const {setUser} = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [formValidMessage, setFormValidMessage] = useState(false);
   const [formCompleted, setFormCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullname: "",
-    email:"",
-    password:"",
-    Password2:""
+    email: "",
+    password: "",
+    Password2: "",
   });
 
-  const [uCase, setUcase] = useState(false);
+  const [uCase, setUCase] = useState(false);
   const [num, setNum] = useState(false);
   const [sChar, setSChar] = useState(false);
   const [passLength, setPassLength] = useState(false);
 
   const navigate = useNavigate();
 
-  const timesIcon = <FaTimes color="red" size={20}/>;
-  const checkIcon = <BsCheck2All color="green" size={20}/>;
+  const timesIcon = <FaTimes color="red" size={20} />;
+  const checkIcon = <BsCheck2All color="green" size={20} />;
 
   const switchIcon = (condition) => {
     return condition ? checkIcon : timesIcon;
-  }
+  };
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setFormData((prevFormData) => ({
-     ...prevFormData,
+      ...prevFormData,
       [name]: value,
     }));
-  }
+  };
 
   useEffect(() => {
-    const {password} = formData;
-  })
+    const { password } = formData;
+
+    setUCase(/([a-z].[A-Z])|([A-Z].[a-z])/.test(password));
+    setNum(/[0-9]/.test(password));
+    setSChar(/[!,%,&,@,#,$,^,*,?,_,~]/.test(password));
+    setPassLength(password.length > 5);
+  }, [formData.password]);
+
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+
+    const { fullname, email, password, Password2 } = formData;
+
+    if (!fullname || !email || !password || !Password2) {
+      setFormValidMessage("oop!! All fields are required 😏");
+      return;
+    }
+
+    if (password !== Password2) {
+      setFormValidMessage("Passwords do not match");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    axios
+      .post("http:localhost:3500/admin/register", formData)
+      .then((response) => {
+        setUser(response.data);
+        setIsSubmitting(false);
+        setFormCompleted(true);
+        toast.success("Registration successful");
+        navigate("/homedash", { state: { user: response.data } });
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        const message =
+          error.response?.status === 400
+            ? "A user with the same email already exists."
+            : "Server error, unable to register user.";
+        setFormValidMessage(message);
+      });
+  });
 
   useEffect(() => {
     setTimeout(() => {
