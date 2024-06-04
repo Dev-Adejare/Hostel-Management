@@ -124,6 +124,13 @@ label {
   list-style: none;
   font-size: 15px;
 }
+
+.error-message
+  {
+    color: red;
+    font-size: 10px;
+  }
+
 /* Normal css */
 
 @media (min-width:992px) and (max-width: 1199px) {

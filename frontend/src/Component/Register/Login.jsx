@@ -27,41 +27,44 @@ const Login = () => {
     }));
   }, []);
 
-  const loginUser = useCallback((e) => {
-    e.preventDefault();
+  const loginUser = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    const { email, password } = formData;
+      const { email, password } = formData;
 
-    if (!email || !password) {
-      setFormValidMessage("All fields are required");
-      return;
-    }
-    setIsSubmitting(true);
+      if (!email || !password) {
+        setFormValidMessage("All fields are required");
+        return;
+      }
+      setIsSubmitting(true);
 
-    axios
-      .post("http://localhost:3500/admin/register", formData)
-      .then((response) => {
-        setUser(response.data);
-        setIsSubmitting(false);
-        toast.success("Login successful");
-        navigate("/homedash", { state: { user: response.data } });
-      })
-      .catch((error) => {
-        setIsSubmitting(false);
-        const message =
-          error.response?.status === 400
-            ? "Invalid Login Credentials."
-            : "Server error, unable to Login user.";
-        setFormValidMessage(message);
-      });
-  },[formData, navigate, setUser]);
+      axios
+        .post("http://localhost:3500/admin/login", formData)
+        .then((response) => {
+          setUser(response.data);
+          setIsSubmitting(false);
+          toast.success("Login successful");
+          navigate("/homedash", { state: { user: response.data } });
+        })
+        .catch((error) => {
+          setIsSubmitting(false);
+          const message =
+            error.response?.status === 400
+              ? "Invalid Login Credentials."
+              : "Server error, unable to Login user.";
+          setFormValidMessage(message);
+        });
+    },
+    [formData, navigate, setUser]
+  );
 
   return (
     <div className="container form__ --100vh">
       <div className="form-container">
         <p className="title"> Login As An Admin</p>
 
-        <form className="form">
+        <form className="form" onSubmit={loginUser}>
           <div className="--dir-column">
             <label htmlFor="email">Email:</label>
             <input
@@ -88,8 +91,11 @@ const Login = () => {
             />
           </div>
 
-          <button className="--btn">Login</button>
+          <button className="--btn" disabled={isSubmitting}>
+            {isSubmitting ? "Siging you up..." : "Login"}
+          </button>
         </form>
+        {formValidMessage && (<p className="error-message">{formValidMessage}</p>)}
         <p>
           Don&apos;t have an account? <Link to="/">Register</Link>{" "}
         </p>
