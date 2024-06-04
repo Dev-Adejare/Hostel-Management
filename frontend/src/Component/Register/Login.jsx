@@ -12,7 +12,7 @@ const Login = () => {
     password: "",
   });
 
-  const [formValidMessage, setFormValidMessage] = useState(false);
+  const [formValidMessage, setFormValidMessage] = useState(false); 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const Login = () => {
           setFormValidMessage(message);
         });
     },
-    [formData, navigate, setUser]
+    [formData, Navigate, setUser]
   );
 
   return (
