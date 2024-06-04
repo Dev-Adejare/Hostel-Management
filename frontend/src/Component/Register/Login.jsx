@@ -28,18 +28,33 @@ const Login = () => {
   }, []);
 
   const loginUser = useCallback((e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const {email, password} = formData;
+    const { email, password } = formData;
 
-    if(!email || !password) {
+    if (!email || !password) {
       setFormValidMessage("All fields are required");
-      return
+      return;
     }
+    setIsSubmitting(true);
 
-    
-
-  })
+    axios
+      .post("http://localhost:3500/admin/register", formData)
+      .then((response) => {
+        setUser(response.data);
+        setIsSubmitting(false);
+        toast.success("Login successful");
+        navigate("/homedash", { state: { user: response.data } });
+      })
+      .catch((error) => {
+        setIsSubmitting(false);
+        const message =
+          error.response?.status === 400
+            ? "Invalid Login Credentials."
+            : "Server error, unable to Login user.";
+        setFormValidMessage(message);
+      });
+  },[formData, navigate, setUser]);
 
   return (
     <div className="container form__ --100vh">
