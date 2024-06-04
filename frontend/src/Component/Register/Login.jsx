@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useContext } from "react";
 import "./Register.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"; //React-Toastify allows you to add notifications to your app with ease.
 import PasswordInput from "../PasswordInput/PasswordInput";
 import axios from "axios"; //lets developers make requests to either their own or a third-party server to fetch data
+import { UserContext } from "../../../context/userContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,15 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
+
+  const handleInputChange = useCallback((e) => {
+    setFormValidMessage("");
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  }, []);
 
   return (
     <div className="container form__ --100vh">
@@ -31,6 +41,8 @@ const Login = () => {
               name="email"
               placeholder="example@yahoo.com"
               required
+              value={formData.email}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -42,6 +54,8 @@ const Login = () => {
               name="password"
               placeholder="Enter your password"
               required
+              value={formData.password}
+              onChange={handleInputChange}
             />
           </div>
 
