@@ -27,6 +27,20 @@ const Login = () => {
     }));
   }, []);
 
+  const loginUser = useCallback((e) => {
+    e.preventDefault()
+
+    const {email, password} = formData;
+
+    if(!email || !password) {
+      setFormValidMessage("All fields are required");
+      return
+    }
+
+    
+
+  })
+
   return (
     <div className="container form__ --100vh">
       <div className="form-container">
