@@ -48,7 +48,7 @@ const Login = () => {
 
           <div className="--dir-column">
             <label htmlFor="password">Password:</label>
-            <input
+            <PasswordInput
               type="password"
               className="input"
               name="password"
