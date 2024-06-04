@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import { UserContext } from "../../../context/userContext";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify";  //React-Toastify allows you to add notifications to your app with ease.
 import { FaTimes } from "react-icons/fa";
 import { BsCheck2All } from "react-icons/bs";
+
+
 
 const AdminReg = () => {
   const [loading, setLoading] = useState(true);
