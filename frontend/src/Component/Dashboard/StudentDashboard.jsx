@@ -6,7 +6,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import useAuthRedirect from "../../../context/useAuth";
-import {confirmAlert} from "react-confirm-alert"
+import { confirmAlert } from "react-confirm-alert";
 import { FaPenFancy } from "react-icons/fa";
 import updateCheckIn from "../../../Modal/updateCheckIn";
 import updateStudentProfile from "../../../Modal/updateStudentProfile";
@@ -53,35 +53,33 @@ const StudentDashboard = () => {
   const [selectedModal, setSelectedModal] = useState("");
   const [selectedStudent, setSelectedStudent] = useState(null);
 
-
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get("http://localhost:3500/student/");
         setData(response.data);
-        
       } catch (error) {
         console.error("Error fetching data:", error);
         setMessage(error.message);
       }
-    }
+    };
     fetchStudents();
-  },[])
+  }, []);
 
   const handleModalOpen = (student) => {
     setSelectedStudent(student);
     setIsModalOpen(true);
-  }
+  };
 
   const handleModalClose = () => {
     setSelectedStudent(null);
     setIsModalOpen(false);
     setSelectedModal("");
-  }
+  };
 
   const handleModalSelect = (modalType) => {
     setSelectedModal(modalType);
-  }
+  };
 
   const removeUser = async (_id) => {
     try {
@@ -89,16 +87,38 @@ const StudentDashboard = () => {
       const response = await axios.delete(
         `http://localhost:3500/student/delete-student${_id}`
       );
+      console.log(response.data);
+
+      //filtering out the deleted student from the data
+      setData((prevData) =>
+        prevData.filter((student) => student._id !== student._id)
+      );
+
+      // setting the success message
+      setMessage("Student deleted successfully");
+
     } catch (error) {
-      
+      //setting the error message
+      setMessage("Failed to delete student");
+      console.error("Error deleting student:", error);
     }
+  };
+
+  const confirmDelete = (_id) => {
+    confirmAlert({
+      title: "Confirm to delete",
+      message: "Are you sure to delete this student?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => removeUser(_id),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
   }
-
-
-
-
-        
-
 
   const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();
@@ -132,10 +152,11 @@ const StudentDashboard = () => {
 
   return (
     <div>
-      {isSidebarToggle &&(
-      <div className="mobile-side-nav">
-        <Sidebar />
-      </div>)}
+      {isSidebarToggle && (
+        <div className="mobile-side-nav">
+          <Sidebar />
+        </div>
+      )}
 
       <div className="--flex --overflow-hidden">
         <div className="desktop-side-nav">
