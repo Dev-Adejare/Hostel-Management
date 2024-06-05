@@ -106,11 +106,11 @@ const StudentDashboard = () => {
 
   const confirmDelete = (_id) => {
     confirmAlert({
-      title: "Confirm to delete",
+      title: "Delete this Student",
       message: "Are you sure to delete this student?",
       buttons: [
         {
-          label: "Yes",
+          label: "Delete",
           onClick: () => removeUser(_id),
         },
         {
