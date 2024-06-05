@@ -68,6 +68,21 @@ const StudentDashboard = () => {
     fetchStudents();
   },[])
 
+  const handleModalOpen = (student) => {
+    setSelectedStudent(student);
+    setIsModalOpen(true);
+  }
+
+  const handleModalClose = () => {
+    setSelectedStudent(null);
+    setIsModalOpen(false);
+    setSelectedModal("");
+  }
+
+  const handleModalSelect = (modalType) => {
+    setSelectedModal(modalType);
+  }
+
 
 
 
