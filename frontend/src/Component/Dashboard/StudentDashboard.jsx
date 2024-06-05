@@ -50,6 +50,20 @@ const StudentDashboard = () => {
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedModal, setSelectedModal] = useState("");
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
+
+  useEffect(() => {
+    const fetchsStudents = async () => {
+      try {
+        
+      } catch (error) {
+        
+      }
+    }
+
+  },[])
 
   const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();
