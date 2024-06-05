@@ -55,10 +55,15 @@ const StudentDashboard = () => {
 
 
   useEffect(() => {
-    const fetchsStudents = async () => {
+    const fetchStudents = async () => {
       try {
+        const response = await axios.get("http://localhost:3500/student/");
+        setData(response.data);
         
       } catch (error) {
+        console.error(error);
+        setMessage(error.message);
+
         
       }
     }
