@@ -7,10 +7,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import useAuthRedirect from "../../../context/useAuth";
 import { confirmAlert } from "react-confirm-alert";
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { FaPenFancy } from "react-icons/fa";
-import UpdateCheckIn from "../../../Modal/updateCheckIn";
-import UpdateStudentProfile from "../../../Modal/updateStudentProfile";
-import ChangeStudentRoom from "../../../Modal/changeStudentRoom";
+import UpdateStudentRoom from "../../../Modal/UpdateStudentRoom";
+import ChangeStudentProfile from "../../../Modal/ChangeStudentProfile";
+import UpdateCheck from "../../../Modal/UpdateCheck";
+
+
 
 
 
@@ -55,13 +58,13 @@ const StudentDashboard = () => {
     try {
       console.log(`Delete student by id: ${_id}`);
       const response = await axios.delete(
-        `http://localhost:3500/student/delete-student${_id}`
+        `http://localhost:3500/student/delete-student/${_id}`
       );
       console.log(response.data);
 
       //filtering out the deleted student from the data
-      setData((prevData) =>
-        prevData.filter((student) => student._id !== student._id)
+      setData((prev) =>
+        prev.filter((student) => student._id !== _id)
       );
 
       // setting the success message
@@ -100,35 +103,6 @@ const StudentDashboard = () => {
   
   
 
-  // const handleSearchChange = (e) => {
-  //   const term = e.target.value.toLowerCase();
-  //   setSearchTerm(term);
-  //   const filtered = studentsData.filter(
-  //     (student) =>
-  //       student.name.toLowerCase().includes(term) ||
-  //       student.email.toLowerCase().includes(term)
-  //   );
-  //   setFilteredData(filtered);
-  // };
-
-  //handleSearchChange function is an event handler triggered when the value of the search input field changes.
-  //It extracts the new search term from the input field, updates the searchTerm state variable,
-  //filters the studentsData array based on the search term,
-  //and updates the filteredData state variable with the filtered results.
-
-  // const handleDelete = (studentId) => {
-  //   const updatedStudents = students.filter(
-  //     (student) => student.id !== studentId
-  //   );
-  //   setStudents(updatedStudents);
-  //   const updatedFilteredData = filteredData.filter(
-  //     (student) => student.id !== studentId
-  //   );
-  //   setFilteredData(updatedFilteredData);
-  // }; //handleDelete function takes a studentId as input,
-  //filters both the students array and the filteredData array to remove the student with that studentId,
-  //and updates the state variables students and filteredData with the updated arrays,
-  //effectively deleting the student from both lists.
 
   return (
     <div>
@@ -243,20 +217,20 @@ const StudentDashboard = () => {
         </div>
       )}
 
-      {selectedModal === "UpdateStudentProfile" &&(
-        <UpdateStudentProfile
+      {selectedModal === "ChangeStudentProfile" &&(
+        <ChangeStudentProfile
           student={selectedStudent}
           onClose={handleModalClose}
         />
       )}
-      {selectedModal === "ChangeStudentRoom" &&(
-        <ChangeStudentRoom
+      {selectedModal === "UpdateStudentRoom" &&(
+        <UpdateStudentRoom
           student={selectedStudent}
           onClose={handleModalClose}
         />
       )}
       {selectedModal === "UpdateCheckIn" &&(
-        <UpdateCheckIn
+        <UpdateCheck
           student={selectedStudent}
           onClose={handleModalClose}
         />

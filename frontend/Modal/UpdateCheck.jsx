@@ -1,6 +1,6 @@
 import React from 'react'
 
-const updateStudentProfile = () => {
+const UpdateCheck = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const updateStudentProfile = () => {
   )
 }
 
-export default updateStudentProfile
+export default UpdateCheck
