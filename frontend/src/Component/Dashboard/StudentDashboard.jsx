@@ -83,6 +83,17 @@ const StudentDashboard = () => {
     setSelectedModal(modalType);
   }
 
+  const removeUser = async (_id) => {
+    try {
+      console.log(`Delete student by id: ${_id}`);
+      const response = await axios.delete(
+        `http://localhost:3500/student/${_id}`
+      );
+    } catch (error) {
+      
+    }
+  }
+
 
 
 
