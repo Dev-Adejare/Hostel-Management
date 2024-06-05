@@ -1,9 +1,16 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import useAuthRedirect from "../../../context/useAuth";
+import {confirmAlert} from "react-confirm-alert"
+import { FaPenFancy } from "react-icons/fa";
+import updateCheckIn from "../../../Modal/updateCheckIn";
+import updateStudentProfile from "../../../Modal/updateStudentProfile";
+import changeStudentRoom from "../../../Modal/changeStudentRoom";
 
 const studentsData = [
   {
@@ -40,6 +47,9 @@ const StudentDashboard = () => {
   const [students, setStudents] = useState(studentsData);
   const [filteredData, setFilteredData] = useState(studentsData);
   const [isSidebarToggle, setIsSidebarToggle] = useState(false);
+  const [data, setData] = useState([]);
+  const [message, setMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();

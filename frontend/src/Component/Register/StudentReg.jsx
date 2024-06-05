@@ -46,9 +46,9 @@ const StudentReg = () => {
       toast.error("All fields are required");
       return;
     }
-
+    setIsSubmitting (true);
     axios
-      .post("http://localhost:3500/student/student-reg", formData)
+      .post("http://localhost:3500/student/register-student", formData)
       .then((response) => {
         setIsSubmitting(false);
         toast.success("Registration successful");
@@ -80,7 +80,20 @@ const StudentReg = () => {
               placeholder="Enter your name"
               required
               onChange={handleInputChange}
-              value={setFormData.name}
+              value={formData.name}
+            />
+          </div>
+
+          <div className="--dir-column">
+            <label htmlFor="email">Contact Email:</label>
+            <input
+              type="text"
+              className="input"
+              name="email"
+              placeholder="example@gmail.com "
+              required
+              onChange={handleInputChange}
+              value={formData.email}
             />
           </div>
 
@@ -98,6 +111,20 @@ const StudentReg = () => {
             />
           </div>
 
+      
+   <div className="--dir-column">
+            <label htmlFor="gender">Gender:</label>
+            <input
+              type="text"
+              className="input"
+              name="gender"
+              placeholder="Check Gender"
+              required
+              onChange={handleInputChange}
+              value={formData.gender}
+            />
+          </div>
+
           <div className="--dir-column">
             <label htmlFor="roomNum">Room Number:</label>
             <input
@@ -112,23 +139,11 @@ const StudentReg = () => {
           </div>
 
           <div className="--dir-column">
-            <label htmlFor="email">Contact Email:</label>
-            <input
-              type="text"
-              className="input"
-              name="email"
-              placeholder="example@gmail.com "
-              required
-              onChange={handleInputChange}
-              value={formData.email}
-            />
-          </div>
-          <div className="--dir-column">
             <label htmlFor="g_name">Guardian&apos;s Name:</label>
             <input
-              type="text"
+              type="g_name"
               className="input"
-              name="name"
+              name="g_name"
               placeholder="Enter your Guardian name "
               required
               onChange={handleInputChange}
@@ -138,27 +153,16 @@ const StudentReg = () => {
           <div className="--dir-column">
             <label htmlFor="password">Guardian&apos;s Email:</label>
             <input
-              type="email"
+              type="g_email"
               className="input"
-              name="email"
+              name="g_email"
               placeholder="example@gmail.com"
               required
               onChange={handleInputChange}
               value={formData.g_email}
             />
           </div>
-          <div className="--dir-column">
-            <label htmlFor="gender">Gender:</label>
-            <input
-              type="text"
-              className="input"
-              name="gender"
-              placeholder="Check Gender"
-              required
-              onChange={handleInputChange}
-              value={formData.gender}
-            />
-          </div>
+       
           <div className="--dir-column">
             <label htmlFor="nationality">Nationality:</label>
             <input
