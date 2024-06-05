@@ -87,7 +87,7 @@ const StudentDashboard = () => {
     try {
       console.log(`Delete student by id: ${_id}`);
       const response = await axios.delete(
-        `http://localhost:3500/student/${_id}`
+        `http://localhost:3500/student/delete-student${_id}`
       );
     } catch (error) {
       
