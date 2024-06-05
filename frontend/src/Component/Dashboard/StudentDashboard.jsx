@@ -61,14 +61,18 @@ const StudentDashboard = () => {
         setData(response.data);
         
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching data:", error);
         setMessage(error.message);
-
-        
       }
     }
-
+    fetchStudents();
   },[])
+
+
+
+
+        
+
 
   const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();
