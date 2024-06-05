@@ -8,44 +8,14 @@ import axios from "axios";
 import useAuthRedirect from "../../../context/useAuth";
 import { confirmAlert } from "react-confirm-alert";
 import { FaPenFancy } from "react-icons/fa";
-import updateCheckIn from "../../../Modal/updateCheckIn";
-import updateStudentProfile from "../../../Modal/updateStudentProfile";
-import changeStudentRoom from "../../../Modal/changeStudentRoom";
+import UpdateCheckIn from "../../../Modal/updateCheckIn";
+import UpdateStudentProfile from "../../../Modal/updateStudentProfile";
+import ChangeStudentRoom from "../../../Modal/changeStudentRoom";
 
-const studentsData = [
-  {
-    id: 1,
-    name: "Jessica Smith",
-    email: "jessica.smith@gmail.com",
-    idNumber: "12345",
-    gender: "Female",
-    age: 20,
-    nationality: "American",
-  },
-  {
-    id: 2,
-    name: "Martins Jordan",
-    email: "Martins.Jordan@gmail.com",
-    idNumber: "12345",
-    gender: "Male",
-    age: 25,
-    nationality: "British",
-  },
-  {
-    id: 3,
-    name: "Monica Benice",
-    email: "Monica.Benice@gmail.com",
-    idNumber: "12345",
-    gender: "Female",
-    age: 30,
-    nationality: "Spanish",
-  },
-];
+
 
 const StudentDashboard = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [students, setStudents] = useState(studentsData);
-  const [filteredData, setFilteredData] = useState(studentsData);
+  const [search, setSearch] = useState("");
   const [isSidebarToggle, setIsSidebarToggle] = useState(false);
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
@@ -114,38 +84,48 @@ const StudentDashboard = () => {
           onClick: () => removeUser(_id),
         },
         {
-          label: "No",
+          label: "cancel",
+          onClick: () => ("Deletion cancelled")
         },
       ],
     });
   }
 
-  const handleSearchChange = (e) => {
-    const term = e.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = studentsData.filter(
-      (student) =>
-        student.name.toLowerCase().includes(term) ||
-        student.email.toLowerCase().includes(term)
-    );
-    setFilteredData(filtered);
-  };
+  const filteredData = data.filter(
+    (item) =>
+      item.nationality.toLowerCase().includes(search.toLowerCase()) ||
+      item.email.toLowerCase().includes(search.toLowerCase())
+  )
+
+  
+  
+
+  // const handleSearchChange = (e) => {
+  //   const term = e.target.value.toLowerCase();
+  //   setSearchTerm(term);
+  //   const filtered = studentsData.filter(
+  //     (student) =>
+  //       student.name.toLowerCase().includes(term) ||
+  //       student.email.toLowerCase().includes(term)
+  //   );
+  //   setFilteredData(filtered);
+  // };
 
   //handleSearchChange function is an event handler triggered when the value of the search input field changes.
   //It extracts the new search term from the input field, updates the searchTerm state variable,
   //filters the studentsData array based on the search term,
   //and updates the filteredData state variable with the filtered results.
 
-  const handleDelete = (studentId) => {
-    const updatedStudents = students.filter(
-      (student) => student.id !== studentId
-    );
-    setStudents(updatedStudents);
-    const updatedFilteredData = filteredData.filter(
-      (student) => student.id !== studentId
-    );
-    setFilteredData(updatedFilteredData);
-  }; //handleDelete function takes a studentId as input,
+  // const handleDelete = (studentId) => {
+  //   const updatedStudents = students.filter(
+  //     (student) => student.id !== studentId
+  //   );
+  //   setStudents(updatedStudents);
+  //   const updatedFilteredData = filteredData.filter(
+  //     (student) => student.id !== studentId
+  //   );
+  //   setFilteredData(updatedFilteredData);
+  // }; //handleDelete function takes a studentId as input,
   //filters both the students array and the filteredData array to remove the student with that studentId,
   //and updates the state variables students and filteredData with the updated arrays,
   //effectively deleting the student from both lists.
@@ -187,8 +167,8 @@ const StudentDashboard = () => {
                 placeholder="Search by name, email, or ID number"
                 type="text"
                 className="search"
-                value={searchTerm}
-                onChange={handleSearchChange}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
 
               <div className="table">
@@ -218,7 +198,13 @@ const StudentDashboard = () => {
                           <RiDeleteBin6Line
                             size={25}
                             color="red"
-                            onClick={() => handleDelete(student.id)}
+                            onClick={() => confirmDelete(student._id)}
+                          />
+                          &nbsp;&nbsp;
+                          <FaPenFancy
+                            size={25}
+                            color="blue"
+                            onClick={() => handleModalOpen(student)}
                           />
                         </td>
                       </tr>
@@ -234,6 +220,47 @@ const StudentDashboard = () => {
           </main>
         </div>
       </div>
+
+      {isModalOpen
+      && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Select an Option</h2>
+            <button onClick={()=> handleModalSelect("UpdateStudentProfile")}
+            className="one">
+              Update Student Profile
+            </button>
+            
+            <button onClick={()=> handleModalSelect("ChangeStudentRoom")}
+            className="two">Change Student Room</button>
+            
+            <button onClick={()=> handleModalSelect("dateCheckIn")}
+            className="three">Update-Check-In</button>
+            
+            <button onClick={()=> handleModalSelect("Close")}>Close</button>
+
+          </div>
+        </div>
+      )}
+
+      {selectedModal === "UpdateStudentProfile" &&(
+        <UpdateStudentProfile
+          student={selectedStudent}
+          onClose={handleModalClose}
+        />
+      )}
+      {selectedModal === "ChangeStudentRoom" &&(
+        <ChangeStudentRoom
+          student={selectedStudent}
+          onClose={handleModalClose}
+        />
+      )}
+      {selectedModal === "UpdateCheckIn" &&(
+        <UpdateCheckIn
+          student={selectedStudent}
+          onClose={handleModalClose}
+        />
+      )}
     </div>
   );
 };
