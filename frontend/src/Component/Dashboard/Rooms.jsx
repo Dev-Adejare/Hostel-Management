@@ -5,6 +5,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import "../Dashboard/Dashboard.css";
 import useAuthRedirect from "../../../context/useAuth";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const initialRooms = [];
 
@@ -89,7 +91,24 @@ const Room = () => {
     } catch (error) {
       console.error("Failed to delete room!", error);
     }
-  };
+  }
+  const confirmDelete = (id) => {
+    confirmAlert({
+      title: "Delete this Room",
+      message: "Are you sure to delete this Room?",
+      buttons: [
+        {
+          label: "Delete",
+          onClick: () => removeRoom(id),
+        },
+        {
+          label: "cancel",
+          onClick: () => ("Deletion cancelled")
+        },
+      ],
+    });
+  }
+  ;
 
   const handleDeleteRoom = (roomNumber) => {
     const updatedRooms = rooms.filter((room) => room.roomNumber !== roomNumber);
@@ -136,15 +155,15 @@ const Room = () => {
                 placeholder="Search by room number, status, or location"
                 type="text"
                 className="search"
-                value={searchTerm}
-                onChange={handleSearchChange}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <div>
                 <RoomTable
-                  rooms={filteredData}
+                  rooms={searchResult}
                   onAddRoom={handleAddRoom}
                   onUpdateRoom={handleUpdateRoom}
-                  onDeleteRoom={handleDeleteRoom}
+                  onDeleteRoom={confirmDelete}
                 />
               </div>
             </div>
