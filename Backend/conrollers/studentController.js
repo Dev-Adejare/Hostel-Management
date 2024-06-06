@@ -225,7 +225,10 @@ const updateCheckInStatus = asyncHandler(async (req, res) => {
       msg: "Invalid action",
     });
   }
-
+  await Room.updateMany(
+    {roomOccupancy: studentId},
+    {$pull: {roomOccupancy: studentId}}
+  );
   await student.save();
   res.status(200).json({ msg: `Student ${action} successfully`, student });
 });
