@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "./Dashboard.css"
 
 const dashboardLinks = [
+  {title: "Home", url: "/homedash"},
   { title: "Students", url: "/studentdash" },
   { title: "Rooms", url: "/room" },
-  { title: "RoomType", url: "/room-type" },
   { title: "Reports", url: "/report" },
 ];
 

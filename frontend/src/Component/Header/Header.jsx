@@ -82,7 +82,9 @@ const Header = () => {
           </div>
 
           <div className="btn__wrapper --flex-center">
-            <button className="btn-danger" onClick={logOutUser}>Logout</button>
+            <button className="btn-danger" onClick={logOutUser}>
+              Logout
+            </button>
             <button className="notification">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +102,9 @@ const Header = () => {
               </svg>
             </button>
             <div>
-              <img src="src/assets/nav-image.jpg" alt="nav-image" />
+              <Link to="/adminPrev">
+                <img src="src/assets/nav-image.jpg" alt="nav-image" />
+              </Link>
             </div>
           </div>
         </nav>
