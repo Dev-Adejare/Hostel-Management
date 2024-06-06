@@ -15,13 +15,13 @@ const RoomTable = ({ rooms, onAddRoom, onUpdateRoom, onDeleteRoom }) => {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   const handleEditClick = (room) => {
-    selectedRoom(room);
+    setSelectedRoom(room);
     setIsEditModalOpen(true);
   };
 
   const handleEditModalClose = () => {
     setIsEditModalOpen(false);
-    selectedRoom(null);
+    setSelectedRoom(null);
   };
 
   const handleAddRoomOpen = () => {
