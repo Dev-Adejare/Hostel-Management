@@ -83,6 +83,21 @@ img {
 }
 
 
+.btn-danger {
+  border-radius: 12px;
+  background: tomato;
+  padding: var(--primary-btn-padding);
+  color: var(--main-bg);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  line-height: 21px;
+  letter-spacing: 0.21px;
+  height: 40px;
+}
+
+
 .notification {
   border-radius: 12px;
   background-color: var(--secondary-btn-bg);

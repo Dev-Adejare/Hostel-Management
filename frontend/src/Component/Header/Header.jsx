@@ -23,7 +23,7 @@ const Header = () => {
         withCredentials: true,
       });
       setUser(null);
-      toast.success("User logged out!🖨️");
+      toast.success("User logged out!🤟");
       navigate("/login");
     } catch (error) {
       console.error("Failed to logout", error);
@@ -82,7 +82,7 @@ const Header = () => {
           </div>
 
           <div className="btn__wrapper --flex-center">
-            <button className="btn-primary">New</button>
+            <button className="btn-danger" onClick={logOutUser}>Logout</button>
             <button className="notification">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
