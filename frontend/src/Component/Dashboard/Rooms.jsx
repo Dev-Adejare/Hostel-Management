@@ -1,38 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import RoomTable from "./RoomTable";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../Dashboard/Dashboard.css";
+import useAuthRedirect from "../../../context/useAuth";
+import axios from "axios";
 
-const initialRooms = [
-  {
-    roomNumber: "101",
-    capacity: 3,
-    occupancy: 2,
-    status: "Available",
-    location: "Lakeside Manor, Riverside",
-  },
-  {
-    roomNumber: "102",
-    capacity: 3,
-    occupancy: 3,
-    status: "Occupied",
-    location: "Hillview Hostel, Springfield",
-  },
-  {
-    roomNumber: "103",
-    capacity: 4,
-    occupancy: 3,
-    status: "Available",
-    location: "Maplewood Lodge, Greenfield",
-  },
-];
+const initialRooms = [];
 
 const Room = () => {
+  useAuthRedirect()
+  const [roomData, setRoomData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [message, setMessage] = useState("");
+  const [isSideBarToggle, setIsSideBarToggle] = useState(false);
+
+  useEffect (() => {
+    setIsLoading(true);
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get("http://localhost:3500/room/get-all-room");
+        setRoomData(response.data);
+      } catch (error) {
+        setIsLoading(false);
+        if(error.response && error.response.status === 400){
+          setMessage("Cannot fetch rooms...");
+        }else{
+          setMessage("Server error!")
+        }
+      }finally {
+        setIsLoading(false);
+      }
+
+    }
+    fetchRooms()
+  },[] )
+
+
+
+
+
+
+
   const [searchTerm, setSearchTerm] = useState("");
   const [rooms, setRooms] = useState(initialRooms);
   const [filteredData, setFilteredData] = useState(initialRooms);
-  const [isSideBarToggle, setIsSideBarToggle] = useState(false);
 
   const handleSearchChange = (e) => {
     const term = e.target.value.toLowerCase();
