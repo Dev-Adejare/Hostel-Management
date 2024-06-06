@@ -14,14 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<AdminReg />} />
       <Route path="/login" element={<Login />} />
-      <Route
-        path="/student-reg"
-        element={
-          <Layout>
-            <StudentReg />
-          </Layout>
-        }
-      />
+      <Route path="/student-reg" element={<StudentReg />} />
       <Route
         path="/homedash"
         element={

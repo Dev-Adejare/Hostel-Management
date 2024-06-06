@@ -9,9 +9,9 @@ import useAuthRedirect from "../../../context/useAuth";
 import { confirmAlert } from "react-confirm-alert";
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { FaPenFancy } from "react-icons/fa";
-import UpdateStudentRoom from "../../../Modal/UpdateStudentRoom";
-import ChangeStudentProfile from "../../../Modal/ChangeStudentProfile";
-import UpdateCheck from "../../../Modal/UpdateCheck";
+import UpdateStudentRoom from "../Modal/UpdateStudentRoom";
+import ChangeStudentProfile from "../Modal/ChangeStudentProfile";
+import UpdateCheck from "../Modal/UpdateCheck";
 
 
 
