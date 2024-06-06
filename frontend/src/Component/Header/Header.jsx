@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { BsHospitalFill } from "react-icons/bs";
 import HeaderSideNav from "./HeaderSideNav";
 
 const items = [
-  { title: "Dashboard", url: "/homedash" },
   { title: "Student", url: "/studentdash" },
   { title: "Rooms", url: "/room" },
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
   const [navToggle, setNavToggle] = useState(false);
 
   return (
