@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import HeaderSideNav from "./HeaderSideNav";
 import { UserContext } from "../../../context/userContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const items = [
   { title: "Student", url: "/studentdash" },
@@ -12,21 +14,21 @@ const items = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const {setUser} = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [navToggle, setNavToggle] = useState(false);
 
   const logOutUser = async () => {
     try {
       await axios.post("http://localhost:3500/admin/logout", null, {
         withCredentials: true,
-      })
-      
+      });
+      setUser(null);
+      toast.success("User logged out!🖨️");
+      navigate("/login");
     } catch (error) {
-      console.error("Failed to logout", error)
-      
+      console.error("Failed to logout", error);
     }
-  }
-
+  };
 
   return (
     <>
