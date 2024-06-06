@@ -9,7 +9,7 @@ import axios from "axios";
 const initialRooms = [];
 
 const Room = () => {
-  useAuthRedirect()
+  useAuthRedirect();
   const [roomData, setRoomData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -17,32 +17,40 @@ const Room = () => {
   const [message, setMessage] = useState("");
   const [isSideBarToggle, setIsSideBarToggle] = useState(false);
 
-  useEffect (() => {
+  useEffect(() => {
     setIsLoading(true);
     const fetchRooms = async () => {
       try {
-        const response = await axios.get("http://localhost:3500/room/get-all-room");
+        const response = await axios.get(
+          "http://localhost:3500/room/get-all-room"
+        );
         setRoomData(response.data);
       } catch (error) {
         setIsLoading(false);
-        if(error.response && error.response.status === 400){
+        if (error.response && error.response.status === 400) {
           setMessage("Cannot fetch rooms...");
-        }else{
-          setMessage("Server error!")
+        } else {
+          setMessage("Server error!");
         }
-      }finally {
+      } finally {
         setIsLoading(false);
       }
+    };
+    fetchRooms();
+  }, []);
 
-    }
-    fetchRooms()
-  },[] )
+  useEffect(() => {
+    const filteredRooms = roomData.filter((res) => {
+      const roomLocation = res.roomLocation?.toLowerCase() || "";
+      const roomStatus = res.status?.toLowerCase() || "";
 
-
-
-
-
-
+      return (
+        roomLocation.includes(search.toLowerCase()) ||
+        roomStatus.includes(search.toLowerCase())
+      );
+    });
+    setSearchResult(filteredRooms);
+  }, [roomData, search]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [rooms, setRooms] = useState(initialRooms);
@@ -61,16 +69,15 @@ const Room = () => {
   };
 
   const handleAddRoom = (newRoomData) => {
-    setRooms([...rooms, newRoomData]);
-    setFilteredData([...rooms, newRoomData]);
+    setRoomData((prevData) => [...prevData, newRoomData]);
   };
 
-  const handleUpdateRoom = (roomNumber, newStatus) => {
-    const updatedRooms = rooms.map((room) =>
-      room.roomNumber === roomNumber ? { ...room, status: newStatus } : room
+  const handleUpdateRoom = (updatedRoomData) => {
+    setRoomData((prevData) =>
+      prevData.map((room) =>
+        room._id === updatedRoomData._id ? updatedRoomData : room
+      )
     );
-    setRooms(updatedRooms);
-    setFilteredData(updatedRooms);
   };
 
   const handleDeleteRoom = (roomNumber) => {
