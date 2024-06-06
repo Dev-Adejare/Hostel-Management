@@ -6,9 +6,8 @@ import "../Dashboard/Dashboard.css";
 import useAuthRedirect from "../../../context/useAuth";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
-const initialRooms = [];
 
 const Room = () => {
   useAuthRedirect();
@@ -54,22 +53,6 @@ const Room = () => {
     setSearchResult(filteredRooms);
   }, [roomData, search]);
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [rooms, setRooms] = useState(initialRooms);
-  const [filteredData, setFilteredData] = useState(initialRooms);
-
-  const handleSearchChange = (e) => {
-    const term = e.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = rooms.filter(
-      (room) =>
-        room.roomNumber.toLowerCase().includes(term) ||
-        room.status.toLowerCase().includes(term) ||
-        room.location.toLowerCase().includes(term)
-    );
-    setFilteredData(filtered);
-  };
-
   const handleAddRoom = (newRoomData) => {
     setRoomData((prevData) => [...prevData, newRoomData]);
   };
@@ -91,7 +74,7 @@ const Room = () => {
     } catch (error) {
       console.error("Failed to delete room!", error);
     }
-  }
+  };
   const confirmDelete = (id) => {
     confirmAlert({
       title: "Delete this Room",
@@ -103,19 +86,11 @@ const Room = () => {
         },
         {
           label: "cancel",
-          onClick: () => ("Deletion cancelled")
+          onClick: () => "Deletion cancelled",
         },
       ],
     });
-  }
-  ;
-
-  const handleDeleteRoom = (roomNumber) => {
-    const updatedRooms = rooms.filter((room) => room.roomNumber !== roomNumber);
-    setRooms(updatedRooms);
-    setFilteredData(updatedRooms);
   };
-
   return (
     <div>
       <div>
