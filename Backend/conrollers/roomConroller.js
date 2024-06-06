@@ -118,6 +118,7 @@ const updateRoom = asyncHandler(async (req, res) => {
 
       res.status(201).json({
         _id: updatedRoom._id,
+        roomNumber: updatedRoom.roomNumber,
         roomStatus: updatedRoom.roomStatus,
         roomCapacity: updatedRoom.roomCapacity,
         roomOccupancy: updatedRoom.roomOccupancy,
