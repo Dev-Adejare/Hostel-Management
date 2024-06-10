@@ -33,6 +33,8 @@ const AdminPreview = () => {
     };
     fetchAdmin();
   }, [])
+
+ 
   
   
   
@@ -75,17 +77,14 @@ const AdminPreview = () => {
     setFilteredData(updatedFilteredData);
   };
 
-  const handleUpdateRole = (userId, newRole) => {
-    const updatedUsers = users.map((user) =>
-      user.id === userId ? { ...user, role: newRole } : user
-    );
-    setUsers(updatedUsers);
-  
-    // Update filtered data as well
-    const updatedFilteredData = filteredData.map((user) =>
-      user.id === userId ? { ...user, role: newRole } : user
-    );
-    setFilteredData(updatedFilteredData);
+  const handleUpdateRole = async (Id, newRole) => {
+    try {
+      const response = await
+      
+    } catch (error) {
+      
+    }
+   
   };
 
   return (

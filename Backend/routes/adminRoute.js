@@ -16,7 +16,7 @@ router.post("/login", login);
 router.get("/:adminId", getAdmin);
 router.delete("/delete/:adminId", deleteAdmin);
 router.get("/", getallAdmins);
-router.put("/:adminId", updateAdmin);
+router.patch("/:adminId", updateAdmin);
 router.post("/logout", logout);
 
 module.exports = router;
