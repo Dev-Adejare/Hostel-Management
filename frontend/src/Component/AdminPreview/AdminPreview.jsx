@@ -2,16 +2,54 @@ import React, { useState } from "react";
 import "./AdminPreview.css";
 import { CiSearch } from "react-icons/ci";
 import UserTable from "./UserTable";
+import useAuthRedirect from "../../../context/useAuth";
+import axios from axios;
 
 const userData = [
-  { name: "Kenny", email: "kenny@example.com", role: "Admin", id: 1 },
-  { name: "Bisi", email: "Bisi@example.com", role: "User", id: 2 },
-  { name: "Hidee", email: "Hidee@example.com", role: "Member", id: 3 },
-  { name: "Derayo", email: "Derayo@example.com", role: "Admin", id: 4 },
-  { name: "Fareedah", email: "Fareedah@example.com", role: "Member", id: 5 },
 ];
 
 const AdminPreview = () => {
+  useAuthRedirect();
+  const [search, setSearch] = useState("");
+  const [adminData, setAdminData] = useState([])
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchAdmin = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3500/admin"
+        );
+        setAdminData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setMessage(error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchAdmins();
+  })
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [users, setUsers] = useState(userData);
   const [filteredData, setFilteredData] = useState(userData); 
