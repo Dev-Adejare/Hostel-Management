@@ -77,9 +77,12 @@ const AdminPreview = () => {
     setFilteredData(updatedFilteredData);
   };
 
-  const handleUpdateRole = async (Id, newRole) => {
+  const handleUpdateRole = async (id, newRole) => {
     try {
-      const response = await axios.patch(`http://localhost:3500/admin/${Id}`)
+      const response = await axios.patch(`http://localhost:3500/admin/${id}`,{
+        role: newRole,
+      })
+      setAdminData((prevData) => prevData.map((admin) => admin._id === id ? {...admin, role: response.data.role} : admin))
       
     } catch (error) {
       
