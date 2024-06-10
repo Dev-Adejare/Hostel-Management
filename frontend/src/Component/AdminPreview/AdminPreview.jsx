@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AdminPreview.css";
 import { CiSearch } from "react-icons/ci";
 import UserTable from "./UserTable";
@@ -24,7 +24,7 @@ const AdminPreview = () => {
         setAdminData(response.data);
       } catch (error) {
         setIsLoading(false);
-        setMessage("Cannot fetch data");
+        setMessage("Error Fetching admin data");
       } finally {
         setIsLoading(false);
       }

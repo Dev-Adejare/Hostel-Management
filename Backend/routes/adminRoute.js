@@ -14,7 +14,7 @@ const { protect } = require("../middleware/authMiddleware");
 router.post("/register", register);
 router.post("/login", login);
 router.get("/:adminId", getAdmin);
-router.delete("/delete/:adminId", deleteAdmin);
+router.delete("/:adminId", deleteAdmin);
 router.get("/", getallAdmins);
 router.patch("/:adminId", updateAdmin);
 router.post("/logout", logout);
