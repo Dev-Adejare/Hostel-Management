@@ -70,12 +70,23 @@ const AdminPreview = () => {
     setFilteredData(filtered);
   };
 
-  const handleDelete = (userId) => {
-    const updatedUsers = users.filter((user) => user.id !== userId);
-    setUsers(updatedUsers);
-    const updatedFilteredData = filteredData.filter((user) => user.id !== userId);
-    setFilteredData(updatedFilteredData);
+  const handleDelete = async (id) => {
+    console.log("Deleting user with id:", id);
+    try {
+      await axios.delete(`http://localhost:3500/admin/${id}`);
+      setAdminData((prevData) => prevData.filter((admin) => admin._id!== id));
+      setMessage("Admin deleted Successfully");
+      
+    } catch (error) {
+      setMessage("Failed to delete admin")
+      console.error("Failed to delete admin", error)
+      
+    }
+
+  }
   };
+
+  
 
   const handleUpdateRole = async (id, newRole) => {
     try {
@@ -83,8 +94,11 @@ const AdminPreview = () => {
         role: newRole,
       })
       setAdminData((prevData) => prevData.map((admin) => admin._id === id ? {...admin, role: response.data.role} : admin))
+      setMessage("Admin updated Successfully")
       
     } catch (error) {
+      setMessage("Failed to update admin")
+      console.error("Failed to update admin", error)
       
     }
    
@@ -119,6 +133,6 @@ const AdminPreview = () => {
 
 
 
-};
+
 
 export default AdminPreview;
