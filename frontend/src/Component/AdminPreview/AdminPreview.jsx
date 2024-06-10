@@ -32,7 +32,7 @@ const AdminPreview = () => {
       }
     };
     fetchAdmin();
-  })
+  }, [])
   
   
   
