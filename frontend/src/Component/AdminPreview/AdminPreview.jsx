@@ -23,13 +23,15 @@ const AdminPreview = () => {
           "http://localhost:3500/admin"
         );
         setAdminData(response.data);
+        } catch (error) {
         setIsLoading(false);
-      } catch (error) {
-        setMessage(error.message);
+        setMessage("Cannot fetch data");
+      }finally{
         setIsLoading(false);
+
       }
     };
-    fetchAdmins();
+    fetchAdmin();
   })
   
   
