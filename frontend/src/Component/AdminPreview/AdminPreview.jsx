@@ -79,7 +79,7 @@ const AdminPreview = () => {
 
   const handleUpdateRole = async (Id, newRole) => {
     try {
-      const response = await
+      const response = await axios.patch(`http://localhost:3500/admin/${Id}`)
       
     } catch (error) {
       
