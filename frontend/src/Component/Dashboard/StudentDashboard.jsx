@@ -29,7 +29,7 @@ const StudentDashboard = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:3500/student/");
+        const response = await axios.get("http://localhost:3500/student");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -164,7 +164,7 @@ const StudentDashboard = () => {
                       <tr key={index} className="table__row">
                         <td className="same_class">{student.name}</td>
                         <td className="same_class">{student.email}</td>
-                        <td className="same_class">{student.idNumber}</td>
+                        <td className="same_class">{student._id}</td>
                         <td className="same_class">{student.gender}</td>
                         <td className="same_class">{student.age}</td>
                         <td className="same_class">{student.nationality}</td>
@@ -208,10 +208,10 @@ const StudentDashboard = () => {
             <button onClick={()=> handleModalSelect("ChangeStudentRoom")}
             className="two">Change Student Room</button>
             
-            <button onClick={()=> handleModalSelect("dateCheckIn")}
+            <button onClick={()=> handleModalSelect("UpdateCheck")}
             className="three">Update-Check-In</button>
             
-            <button onClick={()=> handleModalSelect("Close")}>Close</button>
+            <button onClick={()=> handleModalClose("Close")}>Close</button>
 
           </div>
         </div>
@@ -229,7 +229,7 @@ const StudentDashboard = () => {
           onClose={handleModalClose}
         />
       )}
-      {selectedModal === "UpdateCheckIn" &&(
+      {selectedModal === "UpdateCheck" &&(
         <UpdateCheck
           student={selectedStudent}
           onClose={handleModalClose}

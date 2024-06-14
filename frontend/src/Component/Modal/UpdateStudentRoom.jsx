@@ -37,7 +37,7 @@ const UpdateStudentProfile = ({student, onClose}) => {
                  <input type="text" name="name" value={formData.name} onChange={handleChange}/>
                </div>
                <div>
-                 <label htmlFor="name">Age</label>
+                 <label htmlFor="age">Age</label>
                  <input type="number" name="age" value={formData.age} onChange={handleChange}/>
                </div>
                <div>

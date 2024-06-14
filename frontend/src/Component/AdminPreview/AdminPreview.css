@@ -236,6 +236,10 @@ color: #121417;
   
   .cancel-button {
     background-color: #dc3545;
+  }
+
+  .cancel-button {
+    background-color: #dc3545;
     color: white;
     border: none;
   }
