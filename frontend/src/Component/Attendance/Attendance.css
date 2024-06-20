@@ -1,7 +1,5 @@
 @media (min-width:1200px) and (max-width: 1919px) {
-
-
-  
+ 
   .dailyText {
     font-size: 45px;
   }
@@ -53,9 +51,6 @@
   font-size: 20px;
 }
 }
-
-
-
 
 
 
@@ -208,7 +203,7 @@
   }
   
   .toggleSwitch.active {
-    background-color: #333; /* Change to your desired active color */
+    background-color: #333; 
   }
   
   .toggleSwitch::after {
