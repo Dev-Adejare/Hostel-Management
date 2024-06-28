@@ -161,12 +161,12 @@
   }
   
   .modal-content {
-    /* background: white;
+    background: white;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
     display: flex;
-    align-items: center;
+    /* align-items: center;
     justify-content: center;
     flex-direction: column; */
   }
