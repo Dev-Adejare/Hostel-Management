@@ -172,9 +172,9 @@
   }
   
   .modal-content button {
-    /* margin: 10px;
+    margin: 10px;
     width: 100%;
-    border-radius: 12px; */
+    border-radius: 12px;
     background: #1a6917;
     padding: 10px;
     font-size: 15px;
