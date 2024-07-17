@@ -112,8 +112,8 @@
 .__userData {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: var(--full-width);
+  /* justify-content: space-between;
+  width: var(--full-width); */
 }
 
 .__userData > div > h5 {
