@@ -122,8 +122,8 @@ color: #121417;
 .__tableAction{
     display: flex;
     justify-content: space-between;
-    /* align-items: center;
-    font-family: Inter; */
+    align-items: center;
+    font-family: Inter;
   }
     
 
