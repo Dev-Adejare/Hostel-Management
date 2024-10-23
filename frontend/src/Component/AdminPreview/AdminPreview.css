@@ -226,8 +226,8 @@ color: #121417;
   
   .save-button {
     background-color: #007bff;
-    color: white;
-    border: none;
+    /* color: white;
+    border: none; */
   }
   
 
