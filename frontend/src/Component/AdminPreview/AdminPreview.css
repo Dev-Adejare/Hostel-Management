@@ -86,11 +86,11 @@
     border-bottom: 1px solid #E5E8EB;
     height: 66px;
     font-family: var(--font-family);
-    /* font-size: 14px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 21px;
     letter-spacing: 0px;
-    text-align: left; */
+    text-align: left;
 }
 
 .__tableName{
