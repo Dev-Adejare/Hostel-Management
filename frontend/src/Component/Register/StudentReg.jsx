@@ -1,180 +1,233 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
-
-const initialState = {
-  name: "",
-  age: "",
-  roomNum: "",
-  g_name: "",
-  g_email: "",
-  email: "",
-  gender: "",
-  nationality: "",
-};
+import PasswordInput from "../PasswordInput/PasswordInput";
+import { UserContext } from "../../../context/userContext";
+import api from "../../config/api";
 
 const StudentReg = () => {
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    age: "",
+    nationality: "",
+    g_name: "",
+    g_email: "",
+    gender: "",
+    roomNum: "",
+  });
   const [formValidMessage, setFormValidMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
+    setFormValidMessage("");
     const { name, value } = e.target;
-    // console.log(e.target.value)
-    setFormData({ ...formData, [name]: value });
-  };
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  }, []);
 
-  const registerStudent = async (e) => {
-    e.preventDefault();
-    const { name, age, roomNum, g_name, g_email, gender, nationality, email } =
-      formData;
+  const validateForm = () => {
+    const { name, email, age, nationality, g_name, g_email, gender, roomNum } = formData;
 
-    if (
-      !name ||
-      !age ||
-      !roomNum ||
-      !g_name ||
-      !g_email ||
-      !gender ||
-      !nationality ||
-      !email
-    ) {
-      toast.error("All fields are required");
-      return;
+    if (!name || !email || !age || !nationality || !g_name || !g_email || !gender || !roomNum) {
+      setFormValidMessage("All fields are required");
+      return false;
     }
-    axios
-    .post(`https://hostel-mgmt-bopd.vercel.app/students/registerStudent`, formData)
-    .then((response) => {
-      console.log(response); // Debug response
-      setIsSubmitting(false);
-      toast.success("Registration Successful");
-      navigate("/studentdash");
-    })
-    .catch((error) => {
-      console.error(error); // Debug error
-      setIsSubmitting(false);
-      const message =
-        error.response?.status === 400
-          ? "A Student with the same email address already exists"
-          : "Server error unable to process your registration";
-      setFormValidMessage(message);
-      toast.error(message); // Display error toast
-    });
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setFormValidMessage("Please enter a valid email address");
+      return false;
+    }
+
+    if (!emailRegex.test(g_email)) {
+      setFormValidMessage("Please enter a valid guardian email address");
+      return false;
+    }
+
+    if (isNaN(age) || age < 16 || age > 100) {
+      setFormValidMessage("Age must be between 16 and 100");
+      return false;
+    }
+
+    if (isNaN(roomNum) || roomNum < 1) {
+      setFormValidMessage("Please enter a valid room number");
+      return false;
+    }
+
+    return true;
   };
+
+  const registerStudent = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      if (!validateForm()) {
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      api
+        .post("/students/registerStudent", formData)
+        .then((response) => {
+          console.log(response.data);
+          setUser(response.data);
+          setIsSubmitting(false);
+          toast.success("Registration Successful");
+          navigate("/studentdash", { state: { user: response.data } });
+        })
+        .catch((error) => {
+          console.error("Registration error:", error);
+          setIsSubmitting(false);
+          const errorMessage = error.response?.data?.error || error.response?.data?.message || "Registration failed. Please try again.";
+          setFormValidMessage(errorMessage);
+          toast.error(errorMessage);
+        });
+    },
+    [formData, setUser, navigate]
+  );
 
   return (
-    <div className="form__">
-      <div className="form-container">
-        <p className="title">Register a new student</p>
-        <form className="form" onSubmit={registerStudent}>
-          <div className="--dir-column">
-            <label htmlFor="name">Students Name:</label>
+    <div className="register-container">
+      <div className="register-form">
+        <h2>Student Registration</h2>
+        <form onSubmit={registerStudent}>
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
             <input
               type="text"
-              className="input"
+              id="name"
               name="name"
-              placeholder="Enter name"
-              onChange={handleInputChange}
               value={formData.name}
-            />
-          </div>
-
-          <div className="--dir-column">
-            <label htmlFor="age">Age:</label>
-            <input
-              type="text"
-              className="input"
-              name="age"
-              placeholder="Enter age"
               onChange={handleInputChange}
-              value={formData.age}
+              required
+              disabled={isSubmitting}
             />
           </div>
 
-          <div className="--dir-column">
-            <label htmlFor="age">Email:</label>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
-              className="input"
+              id="email"
               name="email"
-              placeholder="yourname@gmail.com"
-              onChange={handleInputChange}
               value={formData.email}
-            />
-          </div>
-
-          <div className="--dir-column">
-            <label htmlFor="gender">Gender:</label>
-            <input
-              type="text"
-              className="input"
-              name="gender"
-              placeholder="Male || Female"
               onChange={handleInputChange}
-              value={formData.gender}
+              required
+              disabled={isSubmitting}
             />
           </div>
 
-          <div className="--dir-column">
-            <label htmlFor="nationality">Nationality:</label>
+          <div className="form-group">
+            <label htmlFor="age">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              value={formData.age}
+              onChange={handleInputChange}
+              min="16"
+              max="100"
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="nationality">Nationality</label>
             <input
               type="text"
-              className="input"
+              id="nationality"
               name="nationality"
-              placeholder="Enter nationality"
-              onChange={handleInputChange}
               value={formData.nationality}
-            />
-          </div>
-
-          <div className="--dir-column">
-            <label htmlFor="roomNum">Room Number:</label>
-            <input
-              type="text"
-              className="input"
-              name="roomNum"
-              placeholder="Enter room number"
               onChange={handleInputChange}
-              value={formData.roomNum}
+              required
+              disabled={isSubmitting}
             />
           </div>
 
-          <div className="--dir-column">
-            <label htmlFor="g_name">Guardian&apos;s Name:</label>
+          <div className="form-group">
+            <label htmlFor="g_name">Guardian Name</label>
             <input
               type="text"
-              className="input"
+              id="g_name"
               name="g_name"
-              placeholder="Enter guardian's name"
-              onChange={handleInputChange}
               value={formData.g_name}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
             />
           </div>
 
-          <div className="--dir-column">
-            <label htmlFor="g_email">Guardian&apos;s Contact Email:</label>
+          <div className="form-group">
+            <label htmlFor="g_email">Guardian Email</label>
             <input
               type="email"
-              className="input"
+              id="g_email"
               name="g_email"
-              placeholder="Enter guardian's email"
-              onChange={handleInputChange}
               value={formData.g_email}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
             />
           </div>
 
-          <button className="--btn" disabled={isSubmitting}>
-            {isSubmitting ? "Adding Student..." : "Add Student"}
+          <div className="form-group">
+            <label htmlFor="gender">Gender</label>
+            <select
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="roomNum">Room Number</label>
+            <input
+              type="number"
+              id="roomNum"
+              name="roomNum"
+              value={formData.roomNum}
+              onChange={handleInputChange}
+              min="1"
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+
+          {formValidMessage && (
+            <div className="error-message">{formValidMessage}</div>
+          )}
+
+          <button
+            type="submit"
+            className="submit-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Registering..." : "Register"}
           </button>
         </form>
 
-        {formValidMessage && (
-          <p className="error-message">{formValidMessage}</p>
-        )}
+        <div className="form-footer">
+          <p>
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import { UserContext } from "../../../context/userContext";
-import axios from "axios";
+import api from "../../config/api";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });
+  })
   const [formValidMessage, setFormValidMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -37,72 +37,81 @@ const Login = () => {
         return;
       }
 
+      // Basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        setFormValidMessage("Please enter a valid email address");
+        return;
+      }
+
       setIsSubmitting(true);
 
-      axios
-        .post(`https://hostel-mgmt-bopd.vercel.app/admin/login`, formData)
+      api
+        .post("/admin/login", formData)
         .then((response) => {
           console.log(response.data);
           setUser(response.data);
           setIsSubmitting(false);
-          toast.success("Login Successful")
+          toast.success("Login Successful");
           navigate("/homedash", { state: { user: response.data } });
         })
         .catch((error) => {
+          console.error("Login error:", error);
           setIsSubmitting(false);
-          const message =
-            error.response?.status === 400
-              ? "Invalid Login Credentials"
-              : "Server error!";
-          setFormValidMessage(message);
+          const errorMessage = error.response?.data?.error || error.response?.data?.message || "Login failed. Please try again.";
+          setFormValidMessage(errorMessage);
+          toast.error(errorMessage);
         });
     },
-    [formData, navigate, setUser]
+    [formData, setUser, navigate]
   );
 
   return (
-    <div className="container form__ --100vh">
-      <div className="form-container">
-        <p className="title">Admin Login</p>
-
-        <form className="form" onSubmit={loginUser}>
-          <div className="--dir-column">
-            <label htmlFor="email">Email:</label>
+    <div className="register-container">
+      <div className="register-form">
+        <h2>Login</h2>
+        <form onSubmit={loginUser}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
-              className="input"
+              id="email"
               name="email"
-              placeholder="Enter your email"
-              required
               value={formData.email}
               onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
             />
           </div>
 
-          <div className="--dir-column">
-            <label htmlFor="password">Password:</label>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
             <PasswordInput
-              placeholder="Password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
+              disabled={isSubmitting}
             />
           </div>
 
-          <button className="--btn" disabled={isSubmitting}>
-            {isSubmitting ? "Signing In..." : "Sign In"}
-          </button>
+          {formValidMessage && (
+            <div className="error-message">{formValidMessage}</div>
+          )}
 
+          <button
+            type="submit"
+            className="submit-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Logging in..." : "Login"}
+          </button>
         </form>
 
-        {formValidMessage && (
-          <p className="error-message">{formValidMessage}</p>
-        )}
-
-        <p>
-          Don't have an account yet? <Link to="/">Sign Up</Link>
-        </p>
-        
+        <div className="form-footer">
+          <p>
+            Don't have an account? <Link to="/">Register</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,41 +1,23 @@
-import React, { useEffect, useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import "./Register.css";
-import Loader from "../Loader/Loader";
 import { Link, useNavigate } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
-import { BsCheck2All } from "react-icons/bs";
-import PasswordInput from "../PasswordInput/PasswordInput";
 import { toast } from "react-toastify";
+import PasswordInput from "../PasswordInput/PasswordInput";
 import { UserContext } from "../../../context/userContext";
-import axios from "axios";
+import api from "../../config/api";
 
 const AdminReg = () => {
-  const [loading, setLoading] = useState(true);
-  const { setUser } = useContext(UserContext);
-  const [formValidMessage, setFormValidMessage] = useState("");
-  const [formCompleted, setFormCompleted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
     password: "",
-    password2: "",
+    confirmPassword: "",
   });
+  const [formValidMessage, setFormValidMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
-
-  const [uCase, setUCase] = useState(false);
-  const [num, setNum] = useState(false);
-  const [sChar, setSChar] = useState(false);
-  const [passLength, setPassLength] = useState(false);
-
-  const timesIcon = <FaTimes color="red" size={15} />;
-  const checkIcon = <BsCheck2All color="green" size={15} />;
-
-  const switchIcon = (condition) => {
-    return condition ? checkIcon : timesIcon;
-  };
+  const { setUser } = useContext(UserContext);
 
   const handleInputChange = useCallback((e) => {
     setFormValidMessage("");
@@ -46,148 +28,141 @@ const AdminReg = () => {
     }));
   }, []);
 
-  useEffect(() => {
-    const { password } = formData;
-    setUCase(/([a-z].*[A-Z])|([A-Z].*[a-z])/.test(password));
-    setNum(/[0-9]/.test(password));
-    setSChar(/[!,%,&,@,#,$,^,*,?,_,~]/.test(password));
-    setPassLength(password.length > 5);
-  }, [formData.password]);
+  const validateForm = () => {
+    const { fullname, email, password, confirmPassword } = formData;
 
-  const handleSubmit = useCallback(
+    if (!fullname || !email || !password || !confirmPassword) {
+      setFormValidMessage("All fields are required");
+      return false;
+    }
+
+    if (fullname.length < 2) {
+      setFormValidMessage("Full name must be at least 2 characters");
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setFormValidMessage("Please enter a valid email address");
+      return false;
+    }
+
+    if (password.length < 6) {
+      setFormValidMessage("Password must be at least 6 characters");
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      setFormValidMessage("Passwords do not match");
+      return false;
+    }
+
+    return true;
+  };
+
+  const registerAdmin = useCallback(
     (event) => {
       event.preventDefault();
 
-      const { fullname, email, password, password2 } = formData;
-
-      if (!fullname || !email || !password || !password2) {
-        setFormValidMessage("Oops! all fields are required");
-        return;
-      }
-
-      if (password !== password2) {
-        setFormValidMessage("Password does not match!");
+      if (!validateForm()) {
         return;
       }
 
       setIsSubmitting(true);
 
-      axios
-        .post(`https://hostel-mgmt-bopd.vercel.app/admin/register`, formData)
+      const { confirmPassword, ...submitData } = formData;
+
+      api
+        .post("/admin/register", submitData)
         .then((response) => {
+          console.log(response.data);
           setUser(response.data);
           setIsSubmitting(false);
-          setFormCompleted(true);
-          toast.success("Registration Successful")
+          toast.success("Registration Successful");
           navigate("/homedash", { state: { user: response.data } });
         })
         .catch((error) => {
+          console.error("Registration error:", error);
           setIsSubmitting(false);
-          const message =
-            error.response?.status === 400
-              ? "A user with the same email address already exists"
-              : "Server error unable to process your registration";
-          setFormValidMessage(message);
+          const errorMessage = error.response?.data?.error || error.response?.data?.message || "Registration failed. Please try again.";
+          setFormValidMessage(errorMessage);
+          toast.error(errorMessage);
         });
     },
-    [formData, navigate, setUser]
+    [formData, setUser, navigate]
   );
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
-
   return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="container form__ --100vh">
-          <div className="form-container">
-            <p className="title">Create an account</p>
-            <form className="form" onSubmit={handleSubmit}>
-              <div className="--dir-column">
-                <label htmlFor="fullname">Full name:</label>
-                <input
-                  type="text"
-                  className="input"
-                  name="fullname"
-                  value={formData.fullname}
-                  placeholder="Enter your full name"
-                  required
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="--dir-column">
-                <label htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  className="input"
-                  name="email"
-                  value={formData.email}
-                  placeholder="Enter your email"
-                  required
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="--dir-column">
-                <label htmlFor="password">Password:</label>
-                <PasswordInput
-                  placeholder="Password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="--dir-column">
-                <label htmlFor="password2">Confirm password:</label>
-                <PasswordInput
-                  placeholder="Confirm Password"
-                  name="password2"
-                  value={formData.password2}
-                  onChange={handleInputChange}
-                  onPaste={(e) => {
-                    e.preventDefault();
-                    toast.error("Cannot paste into input field");
-                    return false;
-                  }}
-                />
-              </div>
-              <div className="card">
-                <ul className="form-list">
-                  <li>
-                    <span className="indicator">
-                      {switchIcon(uCase)}&nbsp; Lowercase & Uppercase
-                    </span>
-                  </li>
-                  <li>
-                    <span className="indicator">
-                      {switchIcon(num)}&nbsp; Number (0-9)
-                    </span>
-                  </li>
-                  <li>
-                    <span className="indicator">
-                      {switchIcon(sChar)}&nbsp; Special Character (!@#$%^&*)
-                    </span>
-                  </li>
-                  <li>
-                    <span className="indicator">
-                      {switchIcon(passLength)}&nbsp; At least 6 Characters
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <button className="--btn" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Create account"}
-              </button>
-            </form>
-            <p>
-              Already have an account? <Link to="/login">Login</Link>
-            </p>
+    <div className="register-container">
+      <div className="register-form">
+        <h2>Admin Registration</h2>
+        <form onSubmit={registerAdmin}>
+          <div className="form-group">
+            <label htmlFor="fullname">Full Name</label>
+            <input
+              type="text"
+              id="fullname"
+              name="fullname"
+              value={formData.fullname}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
+            />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <PasswordInput
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <PasswordInput
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              disabled={isSubmitting}
+            />
+          </div>
+
+          {formValidMessage && (
+            <div className="error-message">{formValidMessage}</div>
+          )}
+
+          <button
+            type="submit"
+            className="submit-btn"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Registering..." : "Register"}
+          </button>
+        </form>
+
+        <div className="form-footer">
+          <p>
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 

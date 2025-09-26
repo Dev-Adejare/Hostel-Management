@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
+const { protect, adminOnly } = require("../middleware/authMiddleware");const { validateEmail, validatePassword, sanitizeInput } = require("../middleware/validationMiddleware");
 
-// Admin registration
-router.post("/register", adminController.register);
+// Public routes (no authentication required)
+router.post("/register", validateEmail, validatePassword, sanitizeInput, adminController.register);
+router.post("/login", validateEmail, sanitizeInput, adminController.login);
 
-// Admin login
-router.post("/login", adminController.login);
+// Protected routes (authentication required)
+router.use(protect); // All routes below this line require authentication
 
-// Delete admin
-
-router.get("/admins", adminController.getAdmins);
+// Admin-only routes
+router.get("/admins", adminOnly, adminController.getAdmins);
+router.get("/:adminId", adminOnly, adminController.getAdmin);
+router.patch("/:id", adminOnly, validateEmail, sanitizeInput, adminController.updateAdmin);
+router.delete("/:id", adminOnly, adminController.deleteAdmin);
 router.post("/logout", adminController.logoutAdmin);
-
-router.patch("/:id", adminController.updateAdmin);
-router.get("/:adminId", adminController.getAdmin);
-router.delete("/:id", adminController.deleteAdmin);
 
 module.exports = router;
